@@ -79,3 +79,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+  const waButton = document.querySelector('.whatsapp-float');
+  waButton.style.display = 'none';
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      waButton.style.display = 'block';
+    } else {
+      waButton.style.display = 'none';
+    }
+  });
+
