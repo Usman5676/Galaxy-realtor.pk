@@ -11,7 +11,7 @@
     <!-- icon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
- <!-- Firebase SDK -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
@@ -234,32 +234,40 @@
             </button>
         </div>
     </div>
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-down">
-                Welcome to
-            </h1>
-            <h2 class="text-5xl md:text-7xl font-bold mb-8 text-[#e8a425]" data-aos="fade-up" data-aos-delay="300">
-                Galaxy Realtors Builders
-            </h2>
-            <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
-                Your Gateway to Luxury Real Estate
-            </p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6" data-aos="fade-up"
-                data-aos-delay="900">
-                <a href="#properties"
-                    class="bg-gold-500 hover:bg-gold-600 text-black font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                    Explore Properties
-                </a>
-                <a href="#contact"
-                    class="border-2 border-[#e8a425] text-white hover:bg-[#e8a425] hover:text-black font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
-                    Contact Us
-                </a>
+   <!-- Hero Section -->
+<section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
+  <div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-down">
+      Welcome to
+    </h1>
+    <h2 class="text-5xl md:text-7xl font-bold mb-8 text-[#e8a425]" data-aos="fade-up" data-aos-delay="300">
+      Galaxy Realtors Builders
+    </h2>
+    <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
+      Your Gateway to Luxury Real Estate
+    </p>
 
-            </div>
-        </div>
-    </section>
+    <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6" data-aos="fade-up" data-aos-delay="900">
+
+      <!-- 📞 Call Button -->
+      <a href="tel:+923001234567"
+        class="bg-[#e8a425] hover:bg-[#d1961f] text-black font-bold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
+        <ion-icon name="call-outline" class="text-xl"></ion-icon>
+        <span>Call Now</span>
+      </a>
+
+      <!-- 💬 WhatsApp Button -->
+      <a href="https://wa.me/923001234567" target="_blank"
+        class="border-2 border-[#e8a425] text-white hover:bg-[#e8a425] hover:text-black font-bold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
+        <ion-icon name="logo-whatsapp" class="text-xl"></ion-icon>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
 
     <!-- Featured Properties Section -->
     <section id="properties" class="py-20 bg-white">
@@ -676,7 +684,7 @@
     <script src="script.js"></script>
 
     <script src="auth.js"></script>
-    
+
     <script src="firebase-config.js"></script>
 
 </body>
