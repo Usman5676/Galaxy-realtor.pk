@@ -11,6 +11,9 @@
     <!-- icon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+ <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,13 +42,19 @@
 </head>
 
 <body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-90 z-50 py-4 shadow-md">
         <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
 
             <!-- Logo -->
             <div class="flex items-center space-x-2">
-                <a href="https://galaxyrealtor.pk/" class="flex items-center space-x-2">
+                <a href="#" class="flex items-center space-x-2">
                     <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
                         alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
                     <span class="text-1xl font-bold text-[#e8a425]">
@@ -65,13 +74,20 @@
                 <a href="#contact"
                     class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Contact</a>
 
-                <!-- Buttons -->
-                <div class="flex items-center space-x-4">
-                    <button
+                <!-- User Menu (shown when logged in) -->
+                <div id="userMenu" class="user-menu">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+
+                <!-- Auth Buttons (shown when not logged in) -->
+                <div id="authButtons" class="flex items-center space-x-4">
+                    <button id="loginBtn"
                         class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
                         Login
                     </button>
-                    <button
+                    <button id="signupBtn"
                         class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
                         Sign Up
                     </button>
@@ -98,18 +114,126 @@
             <a href="#why-us" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Why Us</a>
             <a href="#contact" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Contact</a>
 
-            <div class="flex space-x-4">
-                <button
+            <!-- Mobile User Menu (shown when logged in) -->
+            <div id="mobileUserMenu" class="user-menu flex-col space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="user-avatar" id="mobileUserAvatar">U</div>
+                    <span class="user-name" id="mobileUserName">User</span>
+                </div>
+                <button class="logout-btn" id="mobileLogoutBtn">Logout</button>
+            </div>
+
+            <!-- Mobile Auth Buttons (shown when not logged in) -->
+            <div id="mobileAuthButtons" class="flex space-x-4">
+                <button id="mobileLoginBtn"
                     class="text-black bg-white font-semibold py-2 px-5 rounded-full hover:bg-[#e1b82c] hover:text-white transition duration-300">
                     Login
                 </button>
-                <button
+                <button id="mobileSignupBtn"
                     class="text-black bg-white font-semibold py-2 px-5 rounded-full hover:bg-[#e1b82c] hover:text-white transition duration-300">
                     Sign Up
                 </button>
             </div>
         </div>
     </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Don't have an account? <a id="showSignup">Sign up</a>
+            </div>
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Already have an account? <a id="showLogin">Login</a>
+            </div>
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Message Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your inbox
+                and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
         <div class="container mx-auto px-6 text-center">
@@ -550,6 +674,11 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script src="scripts.js"></script>
+    <script src="auth.js"></script>
+
+    <script src="firebase-config.js"></script>
+
 </body>
 
 </html>

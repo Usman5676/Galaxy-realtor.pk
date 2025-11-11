@@ -89,4 +89,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       waButton.style.display = 'none';
     }
   });
-
