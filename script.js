@@ -5,87 +5,89 @@ AOS.init({
     offset: 100
 });
 
-// Select elements
-const menuButton = document.querySelector('button.md\\:hidden');
-const navMenu = document.querySelector('.hidden.md\\:flex');
+// Mobile Menu Toggle
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
 
-// Toggle mobile menu
-menuButton.addEventListener('click', function (e) {
-    e.stopPropagation(); // prevent click bubbling
-    navMenu.classList.toggle('hidden');
-    navMenu.classList.toggle('flex');
-    navMenu.classList.toggle('flex-col');
-    navMenu.classList.toggle('absolute');
-    navMenu.classList.toggle('top-16');
-    navMenu.classList.toggle('left-0');
-    navMenu.classList.toggle('w-full');
-    navMenu.classList.toggle('bg-black');
-    navMenu.classList.toggle('bg-opacity-95');
-    navMenu.classList.toggle('p-4');
-    navMenu.classList.toggle('space-y-4');
+menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // click event ko document tak propagate na hone do
+    mobileMenu.classList.toggle('hidden');
 });
 
-// Hide menu when clicking outside
-document.addEventListener('click', function (e) {
-    if (!navMenu.contains(e.target) && !menuButton.contains(e.target)) {
-        if (navMenu.classList.contains('flex')) {
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove(
-                'flex',
-                'flex-col',
-                'absolute',
-                'top-16',
-                'left-0',
-                'w-full',
-                'bg-black',
-                'bg-opacity-95',
-                'p-4',
-                'space-y-4'
-            );
-        }
-    }
-});
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-
-            // Close mobile menu if open
-            if (navMenu.classList.contains('flex')) {
-                navMenu.classList.add('hidden');
-                navMenu.classList.remove(
-                    'flex',
-                    'flex-col',
-                    'absolute',
-                    'top-16',
-                    'left-0',
-                    'w-full',
-                    'bg-black',
-                    'bg-opacity-95',
-                    'p-4',
-                    'space-y-4'
-                );
-            }
-        }
+// Close mobile menu when clicking on a link
+const mobileLinks = mobileMenu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
     });
 });
-  const waButton = document.querySelector('.whatsapp-float');
-  waButton.style.display = 'none';
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 200) {
-      waButton.style.display = 'block';
-    } else {
-      waButton.style.display = 'none';
+// Close mobile menu when clicking anywhere outside it
+document.addEventListener('click', (e) => {
+    if (!mobileMenu.classList.contains('hidden') && 
+        !mobileMenu.contains(e.target) && 
+        !menuBtn.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
     }
-  });
+});
+
+// Close mobile menu when scrolling
+window.addEventListener('scroll', () => {
+    if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+    }
+});
+
+
+// Modal functionality
+const loginModal = document.getElementById('loginModal');
+const signupModal = document.getElementById('signupModal');
+const verificationModal = document.getElementById('verificationModal');
+const resendVerificationModal = document.getElementById('resendVerificationModal');
+const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
+const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+const mobileSignupBtn = document.getElementById('mobileSignupBtn');
+const closeLoginModal = document.getElementById('closeLoginModal');
+const closeSignupModal = document.getElementById('closeSignupModal');
+const closeVerificationModal = document.getElementById('closeVerificationModal');
+const closeResendVerificationModal = document.getElementById('closeResendVerificationModal');
+const showSignup = document.getElementById('showSignup');
+const showLogin = document.getElementById('showLogin');
+const resendVerification = document.getElementById('resendVerification');
+
+// Open modals
+loginBtn.addEventListener('click', () => loginModal.style.display = 'flex');
+signupBtn.addEventListener('click', () => signupModal.style.display = 'flex');
+mobileLoginBtn.addEventListener('click', () => {
+    loginModal.style.display = 'flex';
+    mobileMenu.classList.add('hidden');
+});
+mobileSignupBtn.addEventListener('click', () => {
+    signupModal.style.display = 'flex';
+    mobileMenu.classList.add('hidden');
+});
+
+// Close modals
+closeLoginModal.addEventListener('click', () => loginModal.style.display = 'none');
+closeSignupModal.addEventListener('click', () => signupModal.style.display = 'none');
+closeVerificationModal.addEventListener('click', () => verificationModal.style.display = 'none');
+closeResendVerificationModal.addEventListener('click', () => resendVerificationModal.style.display = 'none');
+
+// Toggle between login and signup
+showSignup.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+    signupModal.style.display = 'flex';
+});
+showLogin.addEventListener('click', () => {
+    signupModal.style.display = 'none';
+    loginModal.style.display = 'flex';
+});
+
+// Close modals when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === loginModal) loginModal.style.display = 'none';
+    if (e.target === signupModal) signupModal.style.display = 'none';
+    if (e.target === verificationModal) verificationModal.style.display = 'none';
+    if (e.target === resendVerificationModal) resendVerificationModal.style.display = 'none';
+});
