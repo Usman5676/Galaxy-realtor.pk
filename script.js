@@ -91,3 +91,59 @@ window.addEventListener('click', (e) => {
     if (e.target === verificationModal) verificationModal.style.display = 'none';
     if (e.target === resendVerificationModal) resendVerificationModal.style.display = 'none';
 });
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dotsContainer = document.getElementById('dots');
+const currentSlideEl = document.getElementById('currentSlide');
+const totalSlidesEl = document.getElementById('totalSlides');
+let index = 0;
+let timer;
+const delay = 10000; // 10 seconds
+
+// Set total slides
+totalSlidesEl.textContent = slides.length;
+
+// Create dots
+slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => showSlide(i));
+    dotsContainer.appendChild(dot);
+});
+const dots = document.querySelectorAll('.dot');
+
+// Show specific slide
+function showSlide(i) {
+    slides[index].classList.remove('active');
+    dots[index].classList.remove('active');
+    index = (i + slides.length) % slides.length;
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlideEl.textContent = index + 1;
+}
+
+// Next / Prev functions
+function nextSlide() { showSlide(index + 1); }
+function prevSlide() { showSlide(index - 1); }
+
+// Auto slide
+function startAutoSlide() {
+    stopAutoSlide();
+    timer = setInterval(nextSlide, delay);
+}
+function stopAutoSlide() {
+    clearInterval(timer);
+}
+
+// Event listeners
+nextBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
+prevBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
+
+// Pause on hover
+document.querySelector('.slider-container').addEventListener('mouseenter', stopAutoSlide);
+document.querySelector('.slider-container').addEventListener('mouseleave', startAutoSlide);
+
+// Initialize
+startAutoSlide();

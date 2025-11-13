@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Realtors | Luxury Real Estate</title>
+    <link rel="stylesheet" href="style.css">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +24,7 @@
 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png"
         href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
     <!-- search -->
@@ -38,7 +39,6 @@
 
         gtag('config', 'G-HK0HLBTK4H');
     </script>
-
 </head>
 
 <body class="bg-white text-gray-800">
@@ -49,7 +49,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-90 z-50 py-4 shadow-md">
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
         <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
 
             <!-- Logo -->
@@ -104,7 +104,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black bg-opacity-95 md:hidden space-y-4 py-6">
+        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black md:hidden space-y-4 py-6">
             <a href="#home" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Home</a>
             <a href="#properties"
                 class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Properties</a>
@@ -222,7 +222,7 @@
                 OK
             </button>
         </div>
-    </div>1
+    </div>
 
     <!-- Resend Verification Modal -->
     <div id="resendVerificationModal" class="modal">
@@ -234,41 +234,51 @@
             </button>
         </div>
     </div>
-   <!-- Hero Section -->
-<section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
-  <div class="container mx-auto px-6 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-down">
-      Welcome to
-    </h1>
-    <h2 class="text-5xl md:text-7xl font-bold mb-8 text-[#e8a425]" data-aos="fade-up" data-aos-delay="300">
-      Galaxy Realtors Builders
-    </h2>
-    <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
-      Your Gateway to Luxury Real Estate
-    </p>
 
-    <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6" data-aos="fade-up" data-aos-delay="900">
-
-      <!-- 📞 Call Button -->
-      <a href="tel:+923000172599"
-        class="bg-[#e8a425] hover:bg-[#d1961f] text-black font-bold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
-        <ion-icon name="call-outline" class="text-xl"></ion-icon>
-        <span>Call Now</span>
-      </a>
-
-      <!-- 💬 WhatsApp Button -->
-      <a href="https://wa.me/923000172599" target="_blank"
-        class="border-2 border-[#e8a425] text-white hover:bg-[#e8a425] hover:text-black font-bold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
-        <ion-icon name="logo-whatsapp" class="text-xl"></ion-icon>
-        <span>WhatsApp</span>
-      </a>
+    <!-- Hero Slider Section -->
+   <section id="home" class="slider-container pt-20" id="slider">
+    <!-- Slide 1 -->
+    <div class="slide active">
+        <picture>
+            <!-- Laptop -->
+            <source media="(min-width:1024px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763050117/1920_second_slider_xjxojo.png">
+            <!-- Tablet -->
+            <source media="(min-width:768px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763049113/1280_second_slider_ol8g5v.png">
+            <!-- Mobile -->
+            <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763049054/768_2nd_slider_raqlbc.png" alt="Galaxy Realtors Luxury Property">
+        </picture>
     </div>
-  </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <picture>
+            <source media="(min-width:1024px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763050124/1920_3rd_slider_on2zll.png">
+            <source media="(min-width:768px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763049124/1280_3rd_slider_gdxncl.png">
+            <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763049068/768_3rd_slider_zszhdc.png" alt="Luxury Villa">
+        </picture>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <picture>
+            <source media="(min-width:1024px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763050031/1920_nzhxs5.png">
+            <source media="(min-width:768px)" srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763049098/1280_ew8omm.png">
+            <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763049079/768_rr2sbz.png" alt="Modern Architecture">
+        </picture>
+    </div>
+
+    <!-- Slide counter -->
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">3</span>
+    </div>
+
+    <!-- Arrows -->
+    <button class="nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+    <!-- Dots -->
+    <div class="dots-container" id="dots"></div>
 </section>
-
-
-
-
     <!-- Featured Properties Section -->
     <section id="properties" class="py-20 bg-white">
         <div class="container mx-auto px-6">
@@ -682,10 +692,8 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-
-    <script src="auth.js"></script>
-
     <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
 
 </body>
 
