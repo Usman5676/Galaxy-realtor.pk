@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://galaxyrealtor.pk/</loc>
-    <lastmod>2025-11-13T17:26:22+00:00</lastmod>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
     <priority>1.00</priority>
   </url>
+
   <url>
     <loc>https://galaxyrealtor.pk/one-kanal-house-dha-sector-h-multan</loc>
-    <lastmod>2025-11-13T17:26:22+00:00</lastmod>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
     <priority>0.80</priority>
   </url>
+
   <url>
     <loc>https://galaxyrealtor.pk/one-kanal-house-dha-sector-m-multan</loc>
-    <lastmod>2025-11-13T17:26:22+00:00</lastmod>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
     <priority>0.80</priority>
   </url>
+
   <url>
     <loc>https://galaxyrealtor.pk/one-kanal-house2-dha-sector-m-multan</loc>
-    <lastmod>2025-11-13T17:26:22+00:00</lastmod>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
     <priority>0.80</priority>
   </url>
+
+  <url>
+    <loc>https://galaxyrealtor.pk/privacy-policy</loc>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://galaxyrealtor.pk/about-us</loc>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://galaxyrealtor.pk/contact-us</loc>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://galaxyrealtor.pk/terms-and-conditions</loc>
+    <lastmod>2025-11-16T07:45:55+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
 </urlset>
