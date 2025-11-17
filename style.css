@@ -461,3 +461,45 @@
     font-size: 14px;
     z-index: 10;
 }
+/* Common Social Button Style */
+.btn-social {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Google Button */
+.btn-google {
+    background: #DB4437; /* Google Red */
+}
+.btn-google:hover {
+    background: #C1351D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Facebook Button */
+.btn-facebook {
+    background: #1877F2; /* Facebook Blue */
+}
+.btn-facebook:hover {
+    background: #145DBF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Icon inside button */
+.btn-social img {
+    width: 20px;
+    height: 20px;
+}

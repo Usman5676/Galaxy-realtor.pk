@@ -1,4 +1,3 @@
-// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyC9EigXaRjEA7A9YR9WgoRX7eBJGZRGf6U",
     authDomain: "galaxy-realtors.firebaseapp.com",
@@ -9,6 +8,6 @@ const firebaseConfig = {
     appId: "1:387847164981:web:875e02de669488dc2a0d7c"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const database = firebase.database();
