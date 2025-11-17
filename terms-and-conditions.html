@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Galaxy Realtors</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                        alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                    <span class="text-1xl font-bold text-[#e8a425]">
+                        Galaxy Realtors Builders
+                    </span>
+                </a>
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-center">
+                <a href="index.html"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Home</a>
+                <a href="index.html#properties"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Properties</a>
+                <a href="index.html#about"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">About</a>
+                <a href="index.html#categories"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Categories</a>
+                <a href="index.html#why-us"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Why Us</a>
+                <a href="index.html#contact"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Contact</a>
+
+                <!-- User Menu (shown when logged in) -->
+                <div id="userMenu" class="user-menu">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+
+                <!-- Auth Buttons (shown when not logged in) -->
+                <div id="authButtons" class="flex items-center space-x-4">
+                    <button id="loginBtn"
+                        class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                        Login
+                    </button>
+                    <button id="signupBtn"
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black md:hidden space-y-4 py-6">
+            <a href="index.html" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Home</a>
+            <a href="index.html#properties"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Properties</a>
+            <a href="index.html#about"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">About</a>
+            <a href="index.html#categories"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Categories</a>
+            <a href="index.html#why-us" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Why
+                Us</a>
+            <a href="index.html#contact"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Contact</a>
+
+            <!-- Mobile User Menu (shown when logged in) -->
+            <div id="mobileUserMenu" class="user-menu flex-col space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="user-avatar" id="mobileUserAvatar">U</div>
+                    <span class="user-name" id="mobileUserName">User</span>
+                </div>
+                <button class="logout-btn" id="mobileLogoutBtn">Logout</button>
+            </div>
+
+            <!-- Mobile Auth Buttons (shown when not logged in) -->
+            <div id="mobileAuthButtons" class="flex space-x-4">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                    Login
+                </button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Don't have an account? <a id="showSignup">Sign up</a>
+            </div>
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Already have an account? <a id="showLogin">Login</a>
+            </div>
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Message Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
+                inbox/spam
+                and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-tooltip">
+            <span>💬 For any query</span>
+        </div>
+        <a href="https://wa.me/923000172599" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <!-- TERMS & CONDITIONS SECTION -->
+    <section class="w-full min-h-screen bg-white flex items-center justify-center px-6 pt-32 pb-20">
+        <div class="max-w-4xl w-full">
+            <h1 class="text-4xl font-bold text-[#e8a425] mb-6 text-center">Terms & Conditions</h1>
+            
+            <div class=" rounded-lg p-8 space-y-8">
+                <!-- Introduction -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">1. Introduction</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Welcome to Galaxy Realtors Pakistan. These Terms and Conditions govern your use of our website located at https://galaxyrealtor.pk/ and our services. By accessing or using our website, you agree to be bound by these Terms and Conditions.
+                    </p>
+                </div>
+
+                <!-- Services -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">2. Services</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Galaxy Realtors Pakistan provides real estate services including property buying, selling, renting, and consultation services. All property information provided on our website is for informational purposes only.
+                    </p>
+                </div>
+
+                <!-- User Accounts -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">3. User Accounts</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        When you create an account with us, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account and password.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>You must be at least 18 years old to create an account</li>
+                        <li>You are responsible for all activities under your account</li>
+                        <li>You must notify us immediately of any unauthorized use of your account</li>
+                    </ul>
+                </div>
+
+                <!-- Property Information -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">4. Property Information</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        While we strive to provide accurate property information, we cannot guarantee the completeness or accuracy of all listings. Prices, availability, and specifications are subject to change without notice.
+                    </p>
+                </div>
+
+                <!-- Payments -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">5. Payments and Fees</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        All transactions are subject to applicable fees and taxes. Payment terms will be specified in individual agreements. We reserve the right to change our fee structure with prior notice.
+                    </p>
+                </div>
+
+                <!-- Intellectual Property -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">6. Intellectual Property</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        All content on this website, including text, graphics, logos, and images, is the property of Galaxy Realtors Pakistan and is protected by copyright laws. You may not use our content without written permission.
+                    </p>
+                </div>
+
+                <!-- Limitation of Liability -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">7. Limitation of Liability</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Galaxy Realtors Pakistan shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of our services or inability to use our services.
+                    </p>
+                </div>
+
+                <!-- Termination -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">8. Termination</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        We may terminate or suspend your account and access to our services immediately, without prior notice, for conduct that we believe violates these Terms and Conditions or is harmful to other users.
+                    </p>
+                </div>
+
+                <!-- Changes to Terms -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">9. Changes to Terms</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        We reserve the right to modify these Terms and Conditions at any time. We will notify users of significant changes through our website or email. Continued use of our services after changes constitutes acceptance of the new terms.
+                    </p>
+                </div>
+
+                <!-- Governing Law -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">10. Governing Law</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        These Terms and Conditions shall be governed by and construed in accordance with the laws of Pakistan. Any disputes shall be subject to the exclusive jurisdiction of the courts in Multan, Pakistan.
+                    </p>
+                </div>
+
+                <!-- Contact Information
+                <div class="bg-gray-100 rounded-lg p-6 mt-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                    <p class="text-gray-700 mb-4">For any questions about these Terms and Conditions, please contact us:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-gray-700">galaxyrealtorsbuilders@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-gray-700">Commercial #H-264, Sector H, DHA Multan</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-gray-700">+92 301-1285988 | +92 300-0172599</span>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="text-center text-gray-500 text-sm mt-8">
+                    <p>Last updated: November 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
+        <div class="container mx-auto px-6">
+            <!-- Top section: Logo + Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+
+                <!-- Logo -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                            alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                        <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-6">
+                    <a href="https://www.youtube.com/@galaxyrealtorsbuilders" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-youtube" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.facebook.com/share/1BhmVAj7vN/" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-facebook" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/galaxyrealtorsbuilders?igsh=MWRwZTY2cjRuZnN6ZQ==" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-instagram" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.tiktok.com/@galaxyrealtorsbuilders?_r=1&_t=ZS-915oh1iyWw4" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-tiktok" class="h-6 w-6"></ion-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Center section: Required Pages Links -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
+                <a href="/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Privacy Policy
+                </a>
+                <a href="/about-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    About Us
+                </a>
+                <a href="/contact-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Contact Us
+                </a>
+                <a href="/terms-and-conditions.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Terms & Conditions
+                </a>
+            </div>
+
+            <!-- Bottom section: Copyright -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
+                <p>© 2025 Galaxy Realtors Builders — All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>
