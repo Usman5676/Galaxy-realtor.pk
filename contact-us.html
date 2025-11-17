@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Realtors-About Us</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                        alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                    <span class="text-1xl font-bold text-[#e8a425]">
+                        Galaxy Realtors Builders
+                    </span>
+                </a>
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-center">
+                <a href="index.html"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Home</a>
+                <a href="index.html#properties"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Properties</a>
+                <a href="index.html#about"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">About</a>
+                <a href="index.html#categories"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Categories</a>
+                <a href="index.html#why-us"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Why Us</a>
+                <a href="index.html#contact"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Contact</a>
+
+                <!-- User Menu (shown when logged in) -->
+                <div id="userMenu" class="user-menu">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+
+                <!-- Auth Buttons (shown when not logged in) -->
+                <div id="authButtons" class="flex items-center space-x-4">
+                    <button id="loginBtn"
+                        class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                        Login
+                    </button>
+                    <button id="signupBtn"
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black md:hidden space-y-4 py-6">
+            <a href="index.html" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Home</a>
+            <a href="index.html#properties"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Properties</a>
+            <a href="index.html#about"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">About</a>
+            <a href="index.html#categories"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Categories</a>
+            <a href="index.html#why-us" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Why
+                Us</a>
+            <a href="index.html#contact"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Contact</a>
+
+            <!-- Mobile User Menu (shown when logged in) -->
+            <div id="mobileUserMenu" class="user-menu flex-col space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="user-avatar" id="mobileUserAvatar">U</div>
+                    <span class="user-name" id="mobileUserName">User</span>
+                </div>
+                <button class="logout-btn" id="mobileLogoutBtn">Logout</button>
+            </div>
+
+            <!-- Mobile Auth Buttons (shown when not logged in) -->
+            <div id="mobileAuthButtons" class="flex space-x-4">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                    Login
+                </button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Don't have an account? <a id="showSignup">Sign up</a>
+            </div>
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Already have an account? <a id="showLogin">Login</a>
+            </div>
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Message Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
+                inbox/spam
+                and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-tooltip">
+            <span>💬 For any query</span>
+        </div>
+        <a href="https://wa.me/923000172599" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                Contact Us
+            </h2>
+            <div class="flex justify-center mb-12">
+                <div class="w-24 h-1 bg-[#e8a425] rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" placeholder="Your Name" required
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8a425] focus:border-[#e8a425] transition duration-300" />
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" required
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                                placeholder="your.email@example.com">
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone"
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                                placeholder="+1 (555) 123-4567">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" required
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                                placeholder="Your message..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-black text-white py-3 rounded-lg font-bold transition duration-300 transform hover:scale-105 hover:bg-[#e8a425] hover:text-black flex justify-center items-center">
+                            <span id="submitText">Send Message</span>
+                            <div id="submitSpinner" class="loading-spinner ml-2 hidden"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:w-1/2 lg:pl-10">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-[#e8a425]">Get In Touch</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-[#e8a425] p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Our Office</h4>
+                                    <p class="text-gray-600">123 Galaxy Avenue, Suite 500<br>New York, NY 10001</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-[#e8a425] p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phone Number</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-[#e8a425] p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email Address</h4>
+                                    <p class="text-gray-600">info@galaxyrealtors.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-[#e8a425] p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Business Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
+        <div class="container mx-auto px-6">
+            <!-- Top section: Logo + Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+
+                <!-- Logo -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                            alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                        <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-6">
+                    <a href="https://www.youtube.com/@galaxyrealtorsbuilders" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-youtube" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.facebook.com/share/1BhmVAj7vN/" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-facebook" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/galaxyrealtorsbuilders?igsh=MWRwZTY2cjRuZnN6ZQ==" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-instagram" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.tiktok.com/@galaxyrealtorsbuilders?_r=1&_t=ZS-915oh1iyWw4" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-tiktok" class="h-6 w-6"></ion-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Center section: Required Pages Links -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
+                <a href="/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Privacy Policy
+                </a>
+                <a href="/about-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    About Us
+                </a>
+                <a href="/contact-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Contact Us
+                </a>
+                <a href="/terms-and-conditions.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Terms & Conditions
+                </a>
+            </div>
+
+            <!-- Bottom section: Copyright -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
+                <p>© 2025 Galaxy Realtors Builders — All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

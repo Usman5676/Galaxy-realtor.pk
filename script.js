@@ -147,3 +147,64 @@ document.querySelector('.slider-container').addEventListener('mouseleave', start
 
 // Initialize
 startAutoSlide();
+// Firebase Auth Reference
+const auth = firebase.auth();
+
+/* ---------------- GOOGLE LOGIN ---------------- */
+document.getElementById("googleLoginBtn").addEventListener("click", () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(res => {
+            alert("Google Login Successful!");
+            location.reload();
+        })
+        .catch(err => alert(err.message));
+});
+
+/* ---------------- FACEBOOK LOGIN ---------------- */
+document.getElementById("facebookLoginBtn").addEventListener("click", () => {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(res => {
+            alert("Facebook Login Successful!");
+            location.reload();
+        })
+        .catch(err => alert(err.message));
+});
+
+/* ---------------- GOOGLE SIGNUP ---------------- */
+document.getElementById("googleSignupBtn").addEventListener("click", () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(res => {
+            alert("Account Created with Google!");
+            location.reload();
+        })
+        .catch(err => alert(err.message));
+});
+
+/* ---------------- FACEBOOK SIGNUP ---------------- */
+document.getElementById("facebookSignupBtn").addEventListener("click", () => {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(res => {
+            alert("Account Created with Facebook!");
+            location.reload();
+        })
+        .catch(err => alert(err.message));
+});
+// Desktop Buttons
+document.getElementById("loginBtn").onclick = () => loginModal.style.display = "flex";
+document.getElementById("signupBtn").onclick = () => signupModal.style.display = "flex";
+
+// Mobile Buttons
+document.getElementById("mobileLoginBtn").onclick = () => {
+    mobileMenu.classList.remove("active");
+    loginModal.style.display = "flex";
+};
+document.getElementById("mobileSignupBtn").onclick = () => {
+    mobileMenu.classList.remove("active");
+    signupModal.style.display = "flex";
+};
+document.getElementById("closeLoginModal").onclick = () => loginModal.style.display = "none";
+document.getElementById("closeSignupModal").onclick = () => signupModal.style.display = "none";

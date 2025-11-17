@@ -1,293 +1,271 @@
-// Authentication functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Sign up form
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('signupName').value;
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-        const confirmPassword = document.getElementById('signupConfirmPassword').value;
-        
-        // Show loading state
-        const signupText = document.getElementById('signupText');
-        const signupSpinner = document.getElementById('signupSpinner');
-        const signupSubmitBtn = document.getElementById('signupSubmitBtn');
-        signupText.style.display = 'none';
-        signupSpinner.style.display = 'block';
-        signupSubmitBtn.disabled = true;
-        
-        // Reset errors
-        resetErrors('signup');
-        
-        // Validate form
-        let isValid = true;
-        
-        if (!name) {
-            showError('signupNameError', 'Name is required');
-            isValid = false;
-        }
-        
-        if (!email) {
-            showError('signupEmailError', 'Email is required');
-            isValid = false;
-        } else if (!isValidEmail(email)) {
-            showError('signupEmailError', 'Please enter a valid email');
-            isValid = false;
-        }
-        
-        if (!password) {
-            showError('signupPasswordError', 'Password is required');
-            isValid = false;
-        } else if (password.length < 6) {
-            showError('signupPasswordError', 'Password must be at least 6 characters');
-            isValid = false;
-        }
-        
-        if (!confirmPassword) {
-            showError('signupConfirmPasswordError', 'Please confirm your password');
-            isValid = false;
-        } else if (password !== confirmPassword) {
-            showError('signupConfirmPasswordError', 'Passwords do not match');
-            isValid = false;
-        }
-        
-        if (!isValid) {
-            // Hide loading state if validation fails
-            signupText.style.display = 'block';
-            signupSpinner.style.display = 'none';
-            signupSubmitBtn.disabled = false;
-            return;
-        }
-        
-        try {
-            // Create user with Firebase
-            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-            const user = userCredential.user;
+// Firebase Auth Reference
+const auth = firebase.auth();
+
+// Debug function
+function showAuthError(message) {
+    console.error("Auth Error:", message);
+    alert("Authentication Error: " + message);
+}
+
+// Check auth state
+auth.onAuthStateChanged((user) => {
+    console.log("Auth state changed:", user);
+    if (user) {
+        // User is signed in
+        updateUIForLoggedInUser(user);
+    } else {
+        // User is signed out
+        updateUIForLoggedOutUser();
+    }
+});
+
+function updateUIForLoggedInUser(user) {
+    console.log("Updating UI for logged in user:", user);
+    
+    // Update desktop UI
+    document.getElementById('authButtons').style.display = 'none';
+    document.getElementById('userMenu').style.display = 'flex';
+    
+    // Update mobile UI
+    document.getElementById('mobileAuthButtons').style.display = 'none';
+    document.getElementById('mobileUserMenu').style.display = 'flex';
+    
+    // Set user info
+    const displayName = user.displayName || user.email || 'User';
+    const firstLetter = displayName.charAt(0).toUpperCase();
+    
+    document.getElementById('userName').textContent = displayName;
+    document.getElementById('userAvatar').textContent = firstLetter;
+    document.getElementById('mobileUserName').textContent = displayName;
+    document.getElementById('mobileUserAvatar').textContent = firstLetter;
+    
+    // Hide verification banner if email is verified
+    if (user.emailVerified) {
+        document.getElementById('verificationBanner').style.display = 'none';
+    } else {
+        document.getElementById('verificationBanner').style.display = 'block';
+    }
+}
+
+function updateUIForLoggedOutUser() {
+    console.log("Updating UI for logged out user");
+    
+    // Update desktop UI
+    document.getElementById('authButtons').style.display = 'flex';
+    document.getElementById('userMenu').style.display = 'none';
+    
+    // Update mobile UI
+    document.getElementById('mobileAuthButtons').style.display = 'flex';
+    document.getElementById('mobileUserMenu').style.display = 'none';
+    
+    // Show verification banner
+    document.getElementById('verificationBanner').style.display = 'none';
+}
+
+/* ---------------- GOOGLE AUTHENTICATION ---------------- */
+function setupGoogleAuth() {
+    const googleLoginBtn = document.getElementById("googleLoginBtn");
+    const googleSignupBtn = document.getElementById("googleSignupBtn");
+
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", googleAuth);
+    }
+    
+    if (googleSignupBtn) {
+        googleSignupBtn.addEventListener("click", googleAuth);
+    }
+}
+
+function googleAuth() {
+    console.log("Starting Google authentication...");
+    
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('email');
+    provider.addScope('profile');
+    
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            console.log("Google auth successful:", result);
+            const user = result.user;
             
-            // Update user profile with name
-            await user.updateProfile({
+            // Check if this is a new user
+            if (result.additionalUserInfo.isNewUser) {
+                alert("Account created successfully with Google!");
+            } else {
+                alert("Login successful with Google!");
+            }
+            
+            // Close modals
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('signupModal').style.display = 'none';
+            
+        })
+        .catch((error) => {
+            console.error("Google auth error:", error);
+            
+            // Handle specific errors
+            if (error.code === 'auth/popup-blocked') {
+                showAuthError("Popup was blocked by your browser. Please allow popups for this site.");
+            } else if (error.code === 'auth/popup-closed-by-user') {
+                console.log("User closed the popup");
+            } else {
+                showAuthError(error.message);
+            }
+        });
+}
+
+/* ---------------- FACEBOOK AUTHENTICATION ---------------- */
+function setupFacebookAuth() {
+    const facebookLoginBtn = document.getElementById("facebookLoginBtn");
+    const facebookSignupBtn = document.getElementById("facebookSignupBtn");
+
+    if (facebookLoginBtn) {
+        facebookLoginBtn.addEventListener("click", facebookAuth);
+    }
+    
+    if (facebookSignupBtn) {
+        facebookSignupBtn.addEventListener("click", facebookAuth);
+    }
+}
+
+function facebookAuth() {
+    console.log("Starting Facebook authentication...");
+    
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('email');
+    provider.addScope('public_profile');
+    
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            console.log("Facebook auth successful:", result);
+            const user = result.user;
+            
+            // Check if this is a new user
+            if (result.additionalUserInfo.isNewUser) {
+                alert("Account created successfully with Facebook!");
+            } else {
+                alert("Login successful with Facebook!");
+            }
+            
+            // Close modals
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('signupModal').style.display = 'none';
+            
+        })
+        .catch((error) => {
+            console.error("Facebook auth error:", error);
+            
+            // Handle specific errors
+            if (error.code === 'auth/popup-blocked') {
+                showAuthError("Popup was blocked by your browser. Please allow popups for this site.");
+            } else if (error.code === 'auth/popup-closed-by-user') {
+                console.log("User closed the popup");
+            } else {
+                showAuthError(error.message);
+            }
+        });
+}
+
+/* ---------------- EMAIL/PASSWORD AUTHENTICATION ---------------- */
+document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            console.log("Email login successful:", userCredential);
+            document.getElementById('loginModal').style.display = 'none';
+            alert("Login successful!");
+        })
+        .catch((error) => {
+            console.error("Email login error:", error);
+            showAuthError(error.message);
+        });
+});
+
+document.getElementById('signupForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+    
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Update profile with name
+            return userCredential.user.updateProfile({
                 displayName: name
+            }).then(() => {
+                // Send email verification
+                return userCredential.user.sendEmailVerification();
             });
-            
-            // Store user name in localStorage
-            localStorage.setItem('userName', name);
-            localStorage.setItem('userEmail', email);
-            
-            // Send email verification
-            await user.sendEmailVerification();
-            
-            // Show verification message
-            signupModal.style.display = 'none';
-            verificationModal.style.display = 'flex';
-            
-            // Sign out the user after registration (they need to verify email first)
-            await auth.signOut();
-            
-        } catch (error) {
-            console.error('Signup error:', error);
-            let errorMessage = 'An error occurred during signup';
-            
-            if (error.code === 'auth/email-already-in-use') {
-                errorMessage = 'This email is already registered';
-            } else if (error.code === 'auth/invalid-email') {
-                errorMessage = 'Invalid email address';
-            } else if (error.code === 'auth/weak-password') {
-                errorMessage = 'Password is too weak';
-            } else if (error.code === 'auth/network-request-failed') {
-                errorMessage = 'Network error. Please check your connection';
-            }
-            
-            showError('signupEmailError', errorMessage);
-        } finally {
-            // Hide loading state
-            signupText.style.display = 'block';
-            signupSpinner.style.display = 'none';
-            signupSubmitBtn.disabled = false;
-        }
-    });
-    
-    // Login form
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        
-        // Show loading state
-        const loginText = document.getElementById('loginText');
-        const loginSpinner = document.getElementById('loginSpinner');
-        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
-        loginText.style.display = 'none';
-        loginSpinner.style.display = 'block';
-        loginSubmitBtn.disabled = true;
-        
-        // Reset errors
-        resetErrors('login');
-        
-        // Validate form
-        let isValid = true;
-        
-        if (!email) {
-            showError('loginEmailError', 'Email is required');
-            isValid = false;
-        }
-        
-        if (!password) {
-            showError('loginPasswordError', 'Password is required');
-            isValid = false;
-        }
-        
-        if (!isValid) {
-            // Hide loading state if validation fails
-            loginText.style.display = 'block';
-            loginSpinner.style.display = 'none';
-            loginSubmitBtn.disabled = false;
-            return;
-        }
-        
-        try {
-            // Sign in with Firebase
-            const userCredential = await auth.signInWithEmailAndPassword(email, password);
-            const user = userCredential.user;
-            
-            // Check if email is verified
-            if (!user.emailVerified) {
-                showError('loginEmailError', 'Please verify your email before logging in');
-                // Show verification banner
-                document.getElementById('verificationBanner').style.display = 'block';
-                // Sign out the user since email is not verified
-                await auth.signOut();
-                return;
-            }
-            
-            // Close modal on successful login
-            loginModal.style.display = 'none';
-            
-            // Clear form
-            loginForm.reset();
-            
-        } catch (error) {
-            console.error('Login error:', error);
-            let errorMessage = 'An error occurred during login';
-            
-            if (error.code === 'auth/invalid-credential') {
-                errorMessage = 'Invalid email or password';
-            } else if (error.code === 'auth/user-not-found') {
-                errorMessage = 'No account found with this email';
-            } else if (error.code === 'auth/wrong-password') {
-                errorMessage = 'Incorrect password';
-            } else if (error.code === 'auth/too-many-requests') {
-                errorMessage = 'Too many failed attempts. Please try again later';
-            } else if (error.code === 'auth/network-request-failed') {
-                errorMessage = 'Network error. Please check your connection';
-            } else if (error.code === 'auth/user-disabled') {
-                errorMessage = 'This account has been disabled';
-            }
-            
-            showError('loginEmailError', errorMessage);
-        } finally {
-            // Hide loading state
-            loginText.style.display = 'block';
-            loginSpinner.style.display = 'none';
-            loginSubmitBtn.disabled = false;
-        }
-    });
-    
-    // Resend verification email
-    resendVerification.addEventListener('click', async () => {
-        const user = auth.currentUser;
-        if (user) {
-            try {
-                resendVerificationModal.style.display = 'flex';
-                document.getElementById('resendVerificationMessage').textContent = 'Sending verification email...';
-                
-                await user.sendEmailVerification();
-                
-                document.getElementById('resendVerificationMessage').textContent = 'Verification email sent successfully! Please check your inbox.';
-            } catch (error) {
-                console.error('Resend verification error:', error);
-                document.getElementById('resendVerificationMessage').textContent = 'Failed to send verification email. Please try again.';
-            }
-        }
-    });
-    
-    // Logout functionality
+        })
+        .then(() => {
+            console.log("Email signup successful");
+            document.getElementById('signupModal').style.display = 'none';
+            document.getElementById('verificationModal').style.display = 'flex';
+            alert("Account created! Please check your email for verification.");
+        })
+        .catch((error) => {
+            console.error("Email signup error:", error);
+            showAuthError(error.message);
+        });
+});
+
+/* ---------------- LOGOUT FUNCTIONALITY ---------------- */
+function setupLogout() {
     const logoutBtn = document.getElementById('logoutBtn');
     const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
     
-    logoutBtn.addEventListener('click', () => {
-        auth.signOut();
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
     
-    mobileLogoutBtn.addEventListener('click', () => {
-        auth.signOut();
-        mobileMenu.classList.add('hidden');
-    });
-    
-    // Auth state listener
-    auth.onAuthStateChanged((user) => {
-        const userMenu = document.getElementById('userMenu');
-        const authButtons = document.getElementById('authButtons');
-        const mobileUserMenu = document.getElementById('mobileUserMenu');
-        const mobileAuthButtons = document.getElementById('mobileAuthButtons');
-        const verificationBanner = document.getElementById('verificationBanner');
-        
-        if (user) {
-            // User is signed in
-            const userName = user.displayName || localStorage.getItem('userName') || 'User';
-            const userInitial = userName.charAt(0).toUpperCase();
-            
-            // Update user info
-            document.getElementById('userName').textContent = userName;
-            document.getElementById('userAvatar').textContent = userInitial;
-            document.getElementById('mobileUserName').textContent = userName;
-            document.getElementById('mobileUserAvatar').textContent = userInitial;
-            
-            // Show user menu, hide auth buttons
-            userMenu.style.display = 'flex';
-            authButtons.style.display = 'none';
-            mobileUserMenu.style.display = 'flex';
-            mobileAuthButtons.style.display = 'none';
-            
-            // Show verification banner if email is not verified
-            if (!user.emailVerified) {
-                verificationBanner.style.display = 'block';
-            } else {
-                verificationBanner.style.display = 'none';
-            }
-        } else {
-            // User is signed out
-            userMenu.style.display = 'none';
-            authButtons.style.display = 'flex';
-            mobileUserMenu.style.display = 'none';
-            mobileAuthButtons.style.display = 'flex';
-            verificationBanner.style.display = 'none';
-            
-            // Clear forms
-            document.getElementById('loginForm').reset();
-            document.getElementById('signupForm').reset();
-        }
-    });
+    if (mobileLogoutBtn) {
+        mobileLogoutBtn.addEventListener('click', handleLogout);
+    }
+}
+
+function handleLogout() {
+    auth.signOut()
+        .then(() => {
+            console.log("User signed out successfully");
+            alert("Logged out successfully!");
+        })
+        .catch((error) => {
+            console.error("Logout error:", error);
+            showAuthError(error.message);
+        });
+}
+
+/* ---------------- RESEND VERIFICATION ---------------- */
+document.getElementById('resendVerification')?.addEventListener('click', () => {
+    const user = auth.currentUser;
+    if (user && !user.emailVerified) {
+        user.sendEmailVerification()
+            .then(() => {
+                document.getElementById('resendVerificationModal').style.display = 'flex';
+                document.getElementById('resendVerificationMessage').textContent = 
+                    "Verification email sent successfully!";
+            })
+            .catch((error) => {
+                console.error("Resend verification error:", error);
+                showAuthError(error.message);
+            });
+    }
 });
 
-// Helper functions
-function showError(elementId, message) {
-    const element = document.getElementById(elementId);
-    element.textContent = message;
-    element.style.display = 'block';
-}
-
-function resetErrors(formType) {
-    const errorElements = document.querySelectorAll(`#${formType}Form .error-message`);
-    errorElements.forEach(element => {
-        element.style.display = 'none';
-    });
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+// Initialize all auth functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Initializing auth functionality...");
+    setupGoogleAuth();
+    setupFacebookAuth();
+    setupLogout();
+    
+    // Test Firebase connection
+    if (auth) {
+        console.log("Firebase Auth is available");
+    } else {
+        console.error("Firebase Auth is not available");
+    }
+});
