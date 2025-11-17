@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Galaxy Realtors</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                        alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                    <span class="text-1xl font-bold text-[#e8a425]">
+                        Galaxy Realtors Builders
+                    </span>
+                </a>
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-center">
+                <a href="index.html"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Home</a>
+                <a href="index.html#properties"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Properties</a>
+                <a href="index.html#about"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">About</a>
+                <a href="index.html#categories"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Categories</a>
+                <a href="index.html#why-us"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Why Us</a>
+                <a href="index.html#contact"
+                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Contact</a>
+
+                <!-- User Menu (shown when logged in) -->
+                <div id="userMenu" class="user-menu">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
+                    <button class="logout-btn" id="logoutBtn">Logout</button>
+                </div>
+
+                <!-- Auth Buttons (shown when not logged in) -->
+                <div id="authButtons" class="flex items-center space-x-4">
+                    <button id="loginBtn"
+                        class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                        Login
+                    </button>
+                    <button id="signupBtn"
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                        Sign Up
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black md:hidden space-y-4 py-6">
+            <a href="index.html" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Home</a>
+            <a href="index.html#properties"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Properties</a>
+            <a href="index.html#about"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">About</a>
+            <a href="index.html#categories"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Categories</a>
+            <a href="index.html#why-us" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Why
+                Us</a>
+            <a href="index.html#contact"
+                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Contact</a>
+
+            <!-- Mobile User Menu (shown when logged in) -->
+            <div id="mobileUserMenu" class="user-menu flex-col space-y-3">
+                <div class="flex items-center space-x-2">
+                    <div class="user-avatar" id="mobileUserAvatar">U</div>
+                    <span class="user-name" id="mobileUserName">User</span>
+                </div>
+                <button class="logout-btn" id="mobileLogoutBtn">Logout</button>
+            </div>
+
+            <!-- Mobile Auth Buttons (shown when not logged in) -->
+            <div id="mobileAuthButtons" class="flex space-x-4">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                    Login
+                </button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Don't have an account? <a id="showSignup">Sign up</a>
+            </div>
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" required>
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required>
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                Already have an account? <a id="showLogin">Login</a>
+            </div>
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Message Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
+                inbox/spam
+                and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary">
+                OK
+            </button>
+        </div>
+    </div>
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-tooltip">
+            <span>💬 For any query</span>
+        </div>
+        <a href="https://wa.me/923000172599" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <!-- PRIVACY POLICY SECTION -->
+    <section class="w-full min-h-screen bg-white flex items-center justify-center px-6 pt-32 pb-20">
+        <div class="max-w-4xl w-full">
+            <h1 class="text-4xl font-bold text-[#e8a425] mb-6 text-center">Privacy Policy</h1>
+            
+            <div class="bg-gray-50 shadow-lg rounded-lg p-8 space-y-8">
+                <!-- Introduction -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Introduction</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        At Galaxy Realtor Pakistan, accessible at  <a href="https://galaxyrealtor.pk/">https://galaxyrealtor.pk/,</a> one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Galaxy Realtor Pakistan and how we use it.
+                    </p>
+                    <div class=" border-l-4 border-[#e8a425] p-4">
+                        <p class="text-gray-700">
+                            If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at: <strong>galaxyrealtorsbuilders@gmail.com</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Scope -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Scope</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        This privacy policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Galaxy Realtor Pakistan. This policy is not applicable to any information collected offline or via channels other than this website.
+                    </p>
+                </div>
+
+                <!-- Consent -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Consent</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        By using our website, you hereby consent to our Privacy Policy and agree to its terms.
+                    </p>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Information We Collect</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.
+                    </p>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-4">Direct Contact</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.
+                    </p>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-4">Account Registration</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.
+                    </p>
+                </div>
+
+                <!-- How We Use Your Information -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">How We Use Your Information</h2>
+                    <p class="text-gray-700 leading-relaxed">We use the information we collect in various ways, including to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>Provide, operate, and maintain our website</li>
+                        <li>Improve, personalize, and expand our website</li>
+                        <li>Understand and analyze how you use our website</li>
+                        <li>Develop new products, services, features, and functionality</li>
+                        <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
+                        <li>Send you emails</li>
+                        <li>Find and prevent fraud</li>
+                    </ul>
+                </div>
+
+                <!-- Log Files -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Log Files</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Galaxy Realtor Pakistan follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.
+                    </p>
+                </div>
+
+                <!-- Cookies and Web Beacons -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Cookies and Web Beacons</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Like any other website, Galaxy Realtor Pakistan uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.
+                    </p>
+                </div>
+
+                <!-- Third-Party Privacy Policies -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Third-Party Privacy Policies</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Galaxy Realtor Pakistan's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.
+                    </p>
+                </div>
+
+                <!-- CCPA Privacy Rights -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">CCPA Privacy Rights</h2>
+                    <p class="text-gray-700 leading-relaxed">Under the CCPA, among other rights, California consumers have the right to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.</li>
+                        <li>Request that a business delete any personal data about the consumer that a business has collected.</li>
+                        <li>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed">
+                        If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
+                    </p>
+                </div>
+
+                <!-- GDPR Data Protection Rights -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">GDPR Data Protection Rights</h2>
+                    <p class="text-gray-700 leading-relaxed">We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li><strong>The right to access</strong> – You have the right to request copies of your personal data.</li>
+                        <li><strong>The right to rectification</strong> – You have the right to request that we correct any information you believe is inaccurate.</li>
+                        <li><strong>The right to erasure</strong> – You have the right to request that we erase your personal data, under certain conditions.</li>
+                        <li><strong>The right to restrict processing</strong> – You have the right to request that we restrict the processing of your personal data, under certain conditions.</li>
+                        <li><strong>The right to object to processing</strong> – You have the right to object to our processing of your personal data, under certain conditions.</li>
+                        <li><strong>The right to data portability</strong> – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed">
+                        If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
+                    </p>
+                </div>
+
+                <!-- Children's Information -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Children's Information</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Galaxy Realtor Pakistan does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.
+                    </p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-gray-100 rounded-lg p-6 mt-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-gray-700">galaxyrealtorsbuilders@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-gray-700">Commercial #H-264, Sector H, DHA Multan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center text-gray-500 text-sm mt-8">
+                    <p>Last updated: November 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
+        <div class="container mx-auto px-6">
+            <!-- Top section: Logo + Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+
+                <!-- Logo -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                            alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                        <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-6">
+                    <a href="https://www.youtube.com/@galaxyrealtorsbuilders" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-youtube" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.facebook.com/share/1BhmVAj7vN/" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-facebook" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/galaxyrealtorsbuilders?igsh=MWRwZTY2cjRuZnN6ZQ==" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-instagram" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.tiktok.com/@galaxyrealtorsbuilders?_r=1&_t=ZS-915oh1iyWw4" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-tiktok" class="h-6 w-6"></ion-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Center section: Required Pages Links -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
+                <a href="/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Privacy Policy
+                </a>
+                <a href="/about-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    About Us
+                </a>
+                <a href="/contact-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Contact Us
+                </a>
+                <a href="/terms-and-conditions.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Terms & Conditions
+                </a>
+            </div>
+
+            <!-- Bottom section: Copyright -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
+                <p>© 2025 Galaxy Realtors Builders — All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>
