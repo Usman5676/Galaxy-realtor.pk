@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Messages - Galaxy Realtors Admin</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <style>
+    .message-text {
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar"
+    class="fixed lg:static top-0 left-0 w-64 bg-black text-white min-h-screen z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+
+    <div class="p-4 border-b border-[#e8a425] flex items-center space-x-2">
+      <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+          class="w-10 h-10" />
+      <div>
+        <h1 class="text-lg font-bold text-[#e8a425]">Galaxy Realtors</h1>
+        <p class="text-xs text-gray-400">Admin Panel</p>
+      </div>
+    </div>
+
+    <nav class="mt-4">
+      <a href="admin-dashboard.html"
+        class="block py-3 px-4 hover:bg-gray-900 transition">Dashboard</a>
+
+      <a href="admin-dashboard.html"
+        class="block py-3 px-4 bg-[#e8a425] text-black font-semibold">Contact Messages</a>
+
+      <a id="logoutBtn"
+        class="block py-3 px-4 text-red-400 hover:bg-gray-900 cursor-pointer mt-4">
+        Logout
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 min-h-screen">
+
+    <!-- MOBILE MENU BTN -->
+    <button id="mobileMenuBtn"
+      class="lg:hidden fixed top-4 left-4 z-50 bg-[#e8a425] p-2 rounded-lg shadow-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <header class="bg-white shadow p-4 flex flex-wrap justify-between items-center gap-2">
+      <h2 class="text-xl font-semibold text-gray-800">Contact Messages</h2>
+
+      <div class="flex items-center space-x-3">
+        <span id="adminEmail" class="text-gray-600 text-sm"></span>
+        <div class="w-10 h-10 bg-[#e8a425] rounded-full flex items-center justify-center text-black font-bold text-lg">
+          A
+        </div>
+      </div>
+    </header>
+
+    <section class="p-4">
+      <div class="bg-white rounded-lg shadow border p-3 sm:p-4">
+
+        <h3 class="p-2 border-b text-lg font-medium">All Contact Messages</h3>
+
+        <!-- DESKTOP TABLE -->
+        <div class="hidden md:block overflow-x-auto mt-3">
+          <table class="w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-4 py-3 text-left text-xs font-medium">Name</th>
+                <th class="px-4 py-3 text-left text-xs font-medium">Email</th>
+                <th class="px-4 py-3 text-left text-xs font-medium">Phone</th>
+                <th class="px-4 py-3 text-left text-xs font-medium">Message</th>
+                <th class="px-4 py-3 text-left text-xs font-medium">Date/Time</th>
+                <th class="px-4 py-3 text-left text-xs font-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="messagesTable">
+              <tr><td colspan="6" class="p-4 text-center">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- MOBILE LIST -->
+        <div id="mobileMessages" class="md:hidden mt-4 space-y-3"></div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FIREBASE SCRIPT -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC9EigXaRjEA7A9YR9WgoRX7eBJGZRGf6U",
+      authDomain: "galaxy-realtors.firebaseapp.com",
+      databaseURL: "https://galaxy-realtors-default-rtdb.firebaseio.com",
+      projectId: "galaxy-realtors",
+      storageBucket: "galaxy-realtors.firebasestorage.app",
+      messagingSenderId: "387847164981",
+      appId: "1:387847164981:web:875e02de669488dc2a0d7c"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    const btn = document.getElementById("mobileMenuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    btn.onclick = () => {
+      sidebar.classList.toggle("-translate-x-full");
+      overlay.classList.toggle("hidden");
+    };
+
+    overlay.onclick = () => {
+      sidebar.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+    };
+
+    auth.onAuthStateChanged((user) => {
+      if (!user) return (window.location.href = "admin-login.html");
+      document.getElementById("adminEmail").textContent = user.email;
+      loadMessages();
+    });
+
+    document.getElementById("logoutBtn").onclick = () => {
+      auth.signOut().then(() => (window.location.href = "admin-login.html"));
+    };
+
+    function loadMessages() {
+      const ref = database.ref("contactMessages");
+
+      ref.on("value", (snap) => {
+        const data = snap.val();
+        const desktop = document.getElementById("messagesTable");
+        const mobile = document.getElementById("mobileMessages");
+
+        if (!data) {
+          desktop.innerHTML = `<tr><td colspan='6' class='p-4 text-center text-gray-500'>No messages yet</td></tr>`;
+          mobile.innerHTML = `<p class='text-center text-gray-500'>No messages yet</p>`;
+          return;
+        }
+
+        const arr = Object.keys(data)
+          .map(id => ({ id, ...data[id] }))
+          .sort((a, b) => b.timestamp - a.timestamp);
+
+        desktop.innerHTML = "";
+        mobile.innerHTML = "";
+
+        arr.forEach(msg => {
+          const date = new Date(msg.timestamp).toLocaleString();
+
+          // Desktop row
+          desktop.innerHTML += `
+            <tr>
+              <td class="px-4 py-3 text-sm font-medium">${msg.name}</td>
+              <td class="px-4 py-3 text-sm text-gray-600">${msg.email}</td>
+              <td class="px-4 py-3 text-sm text-gray-600">${msg.phone || "N/A"}</td>
+              <td class="px-4 py-3 text-sm text-gray-600 message-text">${msg.message}</td>
+              <td class="px-4 py-3 text-sm text-gray-600 whitespace-nowrap">${date}</td>
+              <td class="px-4 py-3">
+                <button onclick="deleteMessage('${msg.id}')"
+                  class="px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200 text-sm">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          `;
+
+          // Mobile card
+          mobile.innerHTML += `
+            <div class="border p-3 rounded shadow">
+              <p><b>Name:</b> ${msg.name}</p>
+              <p><b>Email:</b> ${msg.email}</p>
+              <p><b>Phone:</b> ${msg.phone || "N/A"}</p>
+              <p class="message-text"><b>Message:</b> ${msg.message}</p>
+              <p><b>Date:</b> ${date}</p>
+              <button onclick="deleteMessage('${msg.id}')"
+                class="mt-2 px-3 py-1 bg-red-100 text-red-600 rounded hover:bg-red-200 text-sm">
+                Delete
+              </button>
+            </div>
+          `;
+        });
+      });
+    }
+
+    function deleteMessage(id) {
+      if (!confirm("Are you sure?")) return;
+      database.ref("contactMessages/" + id).remove();
+    }
+  </script>
+
+</body>
+</html>

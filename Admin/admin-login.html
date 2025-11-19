@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Galaxy Realtors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <style>
+        body {
+            background: rgb(101, 97, 97);
+            min-height: 100vh;
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #e8a425;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease-in-out;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-left: 4px solid #b91c1c;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4">
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <div class="bg-black p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md border border-[#e8a425]">
+        <div class="text-center mb-6 sm:mb-8">
+            <div class="flex justify-center mb-4">
+                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                    alt="Galaxy Realtors Logo" class="w-14 h-14 sm:w-16 sm:h-16 object-contain">
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold text-[#e8a425] mb-2">
+                Galaxy Realtors Builders
+            </h1>
+            <p class="text-gray-300 text-sm sm:text-base">Admin Panel Login</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="mb-4">
+                <label for="email" class="block text-white text-sm font-medium mb-2">Email</label>
+
+                <input type="email" id="email" class="w-full px-3 py-2 sm:py-3 border border-gray-600 bg-gray-900 
+               text-white rounded-md 
+               focus:outline-none focus:ring-2 focus:ring-[#e8a425] focus:border-transparent 
+               placeholder-gray-400" placeholder="admin@example.com" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="password" class="block text-white text-sm font-medium mb-2">Password</label>
+
+                <input type="password" id="password" class="w-full px-3 py-2 sm:py-3 border border-gray-600 bg-gray-900 
+               text-white rounded-md 
+               focus:outline-none focus:ring-2 focus:ring-[#e8a425] focus:border-transparent 
+               placeholder-gray-400" placeholder="••••••••" required>
+            </div>
+
+
+            <button type="submit" id="loginBtn"
+                class="w-full bg-[#e8a425] text-black font-semibold py-3 px-4 rounded-md hover:bg-black hover:text-[#e8a425] border border-[#e8a425] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#e8a425] focus:ring-opacity-50 flex items-center justify-center gap-2">
+                <span id="loginText">Sign In</span>
+                <div id="loginSpinner" class="loading-spinner"></div>
+            </button>
+        </form>
+
+        <div id="errorMessage" class="mt-4 p-3 bg-red-900 border border-red-700 text-red-200 rounded-md text-sm hidden">
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9EigXaRjEA7A9YR9WgoRX7eBJGZRGf6U",
+            authDomain: "galaxy-realtors.firebaseapp.com",
+            databaseURL: "https://galaxy-realtors-default-rtdb.firebaseio.com",
+            projectId: "galaxy-realtors",
+            storageBucket: "galaxy-realtors.firebasestorage.app",
+            messagingSenderId: "387847164981",
+            appId: "1:387847164981:web:875e02de669488dc2a0d7c"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Enable form inputs after Firebase initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('email').disabled = false;
+            document.getElementById('password').disabled = false;
+        });
+
+        // Notification function
+        function showNotification(message, type = 'error') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'} mr-2"></i>
+                        <span class="text-sm">${message}</span>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in, redirect to dashboard
+                window.location.href = "admin-dashboard.html";
+            }
+        });
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginText = document.getElementById('loginText');
+            const loginSpinner = document.getElementById('loginSpinner');
+
+            // Clear previous error
+            errorMessage.classList.add('hidden');
+
+            // Show loading state
+            loginBtn.classList.add('btn-loading');
+            loginText.textContent = 'Signing In...';
+            loginSpinner.style.display = 'block';
+            loginBtn.disabled = true;
+
+            try {
+                // Sign in with email and password
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+
+                // Success - redirect to dashboard
+                loginText.textContent = 'Success! Redirecting...';
+                setTimeout(() => {
+                    window.location.href = "admin-dashboard.html";
+                }, 1000);
+
+            } catch (error) {
+                // Handle errors
+                console.error('Login error:', error);
+
+                // Reset loading state
+                loginBtn.classList.remove('btn-loading');
+                loginText.textContent = 'Sign In';
+                loginSpinner.style.display = 'none';
+                loginBtn.disabled = false;
+
+                // Show error message
+                let errorMsg = 'Login failed. Please try again.';
+
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        errorMsg = 'Invalid email address.';
+                        break;
+                    case 'auth/user-disabled':
+                        errorMsg = 'This account has been disabled.';
+                        break;
+                    case 'auth/user-not-found':
+                        errorMsg = 'No account found with this email.';
+                        break;
+                    case 'auth/wrong-password':
+                        errorMsg = 'Incorrect password. Please try again.';
+                        break;
+                    case 'auth/too-many-requests':
+                        errorMsg = 'Too many failed attempts. Please try again later.';
+                        break;
+                    case 'auth/network-request-failed':
+                        errorMsg = 'Network error. Please check your connection.';
+                        break;
+                }
+
+                errorMessage.textContent = errorMsg;
+                errorMessage.classList.remove('hidden');
+                showNotification(errorMsg, 'error');
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                // Add focus effects
+                input.addEventListener('focus', function () {
+                    this.parentElement.classList.add('ring-2', 'ring-[#e8a425]', 'rounded-md');
+                });
+
+                input.addEventListener('blur', function () {
+                    this.parentElement.classList.remove('ring-2', 'ring-[#e8a425]', 'rounded-md');
+                });
+            });
+
+            // Add enter key support
+            document.getElementById('password').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+
+        // Add Font Awesome for icons
+        const fontAwesome = document.createElement('link');
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        document.head.appendChild(fontAwesome);
+    </script>
+</body>
+
+</html>

@@ -51,9 +51,74 @@
 
         gtag('config', 'G-HK0HLBTK4H');
     </script>
+
+    <style>
+        /* Custom Notification Styles */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease-in-out;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-left: 4px solid #047857;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-left: 4px solid #b91c1c;
+        }
+
+        .notification.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-left: 4px solid #b45309;
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #e8a425;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 
 <body class="bg-white text-gray-800">
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
     <!-- Verification Banner -->
     <div id="verificationBanner" class="verification-banner">
         Please verify your email address to access all features.
@@ -273,7 +338,7 @@
                 get back to you as soon as possible.
             </p>
 
-            <form class="bg-gray-50 shadow-lg rounded-lg p-8 space-y-6">
+            <form id="contactForm" class="bg-gray-50 shadow-lg rounded-lg p-8 space-y-6">
                 <div>
                     <label for="name" class="block text-left mb-2 font-medium text-gray-700">Full Name</label>
                     <input type="text" id="name" name="name"
@@ -298,10 +363,16 @@
                         class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#e8a425]"
                         placeholder="Your message..." required></textarea>
                 </div>
-                <button type="submit"
-                    class="bg-[#e8a425] text-black font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105 hover:bg-black hover:text-white border-2 border-transparent hover:border-[#e8a425]">
-                    Send Message
+                <button type="submit" id="submitBtn" class="bg-[#e8a425] ... flex items-center justify-center w-full">
+
+                    <span id="submitText">Send Message</span>
+
+                    <span class="spinner-wrapper w-4 h-4 flex items-center justify-center ml-2">
+                        <div id="submitSpinner" class="loading-spinner"></div>
+                    </span>
+
                 </button>
+
             </form>
 
             <div class="space-y-4 mt-12 mb-8 flex flex-col items-center">
@@ -336,12 +407,8 @@
                     </p>
                 </div>
             </div>
-
-
         </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
@@ -402,13 +469,130 @@
         </div>
     </footer>
 
-
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
 
+    <!-- Firebase for Contact Form -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        // Firebase configuration for contact form
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9EigXaRjEA7A9YR9WgoRX7eBJGZRGf6U",
+            authDomain: "galaxy-realtors.firebaseapp.com",
+            databaseURL: "https://galaxy-realtors-default-rtdb.firebaseio.com",
+            projectId: "galaxy-realtors",
+            storageBucket: "galaxy-realtors.firebasestorage.app",
+            messagingSenderId: "387847164981",
+            appId: "1:387847164981:web:875e02de669488dc2a0d7c"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Notification function
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-exclamation-triangle'} mr-2"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(notification);
+
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Function to handle contact form submission
+        function submitContactForm(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // Basic validation
+            if (!name || !email || !message) {
+                showNotification('Please fill in all required fields: Name, Email, and Message', 'error');
+                return;
+            }
+
+            // Show loading state
+            submitBtn.classList.add('btn-loading');
+            submitText.textContent = 'Sending...';
+            submitSpinner.style.display = 'block';
+            submitBtn.disabled = true;
+
+            // Save to Firebase
+            database.ref("contactMessages").push({
+                name: name,
+                email: email,
+                phone: phone || 'Not provided',
+                message: message,
+                timestamp: Date.now()
+            })
+                .then(() => {
+                    // Success
+                    showNotification('Thank you for your message! We will get back to you soon.', 'success');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch((error) => {
+                    // Error
+                    console.error('Error saving message:', error);
+                    showNotification('Sorry, there was an error sending your message. Please try again.', 'error');
+                })
+                .finally(() => {
+                    // Reset loading state
+                    submitBtn.classList.remove('btn-loading');
+                    submitText.textContent = 'Send Message';
+                    submitSpinner.style.display = 'none';
+                    submitBtn.disabled = false;
+                });
+        }
+
+        // Add event listener to form
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', submitContactForm);
+            }
+        });
+    </script>
 </body>
 
 </html>
