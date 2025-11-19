@@ -363,15 +363,18 @@
                         class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#e8a425]"
                         placeholder="Your message..." required></textarea>
                 </div>
-                <button type="submit" id="submitBtn" class="bg-[#e8a425] ... flex items-center justify-center w-full">
-
+                <button type="submit" id="submitBtn" class="w-full flex items-center justify-center gap-2 
+           bg-[#e8a425] hover:bg-black hover:text-[#e8a425]
+           text-black font-semibold py-3 px-4 
+           rounded-md border border-[#e8a425] 
+           transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
                     <span id="submitText">Send Message</span>
 
-                    <span class="spinner-wrapper w-4 h-4 flex items-center justify-center ml-2">
-                        <div id="submitSpinner" class="loading-spinner"></div>
+                    <span class="w-4 h-4 flex items-center justify-center">
+                        <div id="submitSpinner" class="loading-spinner hidden"></div>
                     </span>
-
                 </button>
+
 
             </form>
 
