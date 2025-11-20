@@ -335,14 +335,47 @@
     <!-- Featured Properties Section -->
     <section id="properties" class="py-20 bg-white">
         <div class="container mx-auto px-6">
+
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">
                 Our Featured Listings
             </h2>
+
             <div class="flex justify-center mb-12" data-aos="fade-up">
-                <div class="w-24 h-1  rounded-full bg-[#e8a425]"></div>
+                <div class="w-24 h-1 rounded-full bg-[#e8a425]"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- FILTER BUTTONS -->
+            <div class="flex justify-center gap-4 mb-10">
+
+                <div class="group">
+                    <button class="filter-btn px-4 py-2 rounded  transition bg-[#e8a425] text-white" data-target="all">
+                        All
+                    </button>
+                </div>
+
+                <div class="group">
+                    <button
+                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
+                        data-target="dha">
+                        DHA
+                    </button>
+                </div>
+
+                <div class="group">
+                    <button
+                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
+                        data-target="buch">
+                        BUCH Villas
+                    </button>
+                </div>
+
+            </div>
+
+
+
+            <!-- DHA LISTINGS -->
+            <div id="dha" class="property-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
                 <!-- Property 1 -->
                 <a href="One-Kanal-House-DHA-Sector-H-Multan.html" class="block group">
                     <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
@@ -357,13 +390,11 @@
                             <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
                             <p class="text-gray-600 mb-4">DHA Sector-H, Multan</p>
                             <div
-                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition duration-300">
-                                View Details
-                            </div>
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
                         </div>
                     </div>
                 </a>
-
 
                 <!-- Property 2 -->
                 <a href="One-Kanal-House-DHA-Sector-M-Multan.html" class="block group">
@@ -379,9 +410,8 @@
                             <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
                             <p class="text-gray-600 mb-4">DHA Sector-M, Multan</p>
                             <div
-                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition duration-300">
-                                View Details
-                            </div>
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
                         </div>
                     </div>
                 </a>
@@ -400,12 +430,12 @@
                             <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
                             <p class="text-gray-600 mb-4">DHA Sector-M, Multan</p>
                             <div
-                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition duration-300">
-                                View Details
-                            </div>
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
                         </div>
                     </div>
                 </a>
+
                 <!-- Property 4 -->
                 <a href="One-Kanal-House-DHA-Sector-Q-Multan.html" class="block group">
                     <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
@@ -420,13 +450,40 @@
                             <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
                             <p class="text-gray-600 mb-4">DHA Sector-Q, Multan</p>
                             <div
-                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition duration-300">
-                                View Details
-                            </div>
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
                         </div>
                     </div>
                 </a>
+
             </div>
+
+            <!-- BUCH LISTINGS -->
+            <div id="buch" class="property-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                style="display:none;">
+
+                <!-- Example BUCH -->
+                <a href="One-Kanal-House-DHA-Sector-Q-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1763557074/Galaxyrealtorbuilder_aisdf5.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                One Kanal House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-Q, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
         </div>
     </section>
 
@@ -812,7 +869,29 @@
     <script src="script.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
+    <script>const buttons = document.querySelectorAll(".filter-btn");
+    const sections = document.querySelectorAll(".property-section");
 
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = btn.getAttribute("data-target");
+
+            // Reset all buttons
+            buttons.forEach(b => {
+                b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
+                b.style.color = "black";
+            });
+
+            // Activate clicked button
+            btn.style.backgroundColor = "#e8a425";
+            btn.style.color = "white";
+
+            // Filter Sections
+            sections.forEach(sec => {
+                sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
+            });
+        });
+    });</script>
 </body>
 
 </html>
