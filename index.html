@@ -13,8 +13,9 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
     <!-- Google Fonts -->
@@ -53,13 +54,16 @@
         gtag('config', 'G-HK0HLBTK4H');
     </script>
     <!-- gooogle tag manager -->
-     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W43PV9XN');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W43PV9XN');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body class="bg-white text-gray-800">
@@ -72,51 +76,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
         <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
-
             <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <a href="#" class="flex items-center space-x-2">
-                    <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
-                        alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
-                    <span class="text-1xl font-bold text-[#e8a425]">
-                        Galaxy Realtors Builders
-                    </span>
-                </a>
-            </div>
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                    alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+            </a>
+
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-8 text-center">
-                <a href="#home" class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Home</a>
-                <a href="#properties"
-                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Properties</a>
-                <a href="#about" class="text-white hover:text-[#e8a425] transition duration-300 font-medium">About</a>
-                <a href="#categories"
-                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Categories</a>
-                <a href="#why-us" class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Why Us</a>
-                <a href="#contact"
-                    class="text-white hover:text-[#e8a425] transition duration-300 font-medium">Contact</a>
+            <div class="hidden xl:flex items-center space-x-8">
+                <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+                <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+                <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+                <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+                <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+                <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
-                <!-- User Menu (shown when logged in) -->
-                <div id="userMenu" class="user-menu">
-                    <div class="user-avatar" id="userAvatar">U</div>
-                    <span class="user-name" id="userName">User</span>
-                    <button class="logout-btn" id="logoutBtn">Logout</button>
-                </div>
-
-                <!-- Auth Buttons (shown when not logged in) -->
-                <div id="authButtons" class="flex items-center space-x-4">
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
                     <button id="loginBtn"
-                        class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
+                        class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">
                         Login
                     </button>
                     <button id="signupBtn"
-                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">
                         Sign Up
                     </button>
+                    <div id="userArea" class="hidden items-center space-x-3 text-white">
+                        <span id="userNameDisplay" class="font-medium"></span>
+                        <button id="logoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+            <button id="menu-btn" class="xl:hidden text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -125,61 +119,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden flex flex-col items-center bg-black md:hidden space-y-4 py-6">
-            <a href="#home" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Home</a>
-            <a href="#properties"
-                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Properties</a>
-            <a href="#about" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">About</a>
-            <a href="#categories"
-                class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Categories</a>
-            <a href="#why-us" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Why Us</a>
-            <a href="#contact" class="text-white hover:text-[#e1b82c] transition duration-300 font-medium">Contact</a>
+        <div id="mobile-menu"
+            class="hidden flex flex-col items-center bg-black xl:hidden space-y-5 py-6 border-t border-gray-800">
+            <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+            <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+            <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+            <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+            <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+            <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
-            <!-- Mobile User Menu (shown when logged in) -->
-            <div id="mobileUserMenu" class="user-menu flex-col space-y-3">
-                <div class="flex items-center space-x-2">
-                    <div class="user-avatar" id="mobileUserAvatar">U</div>
-                    <span class="user-name" id="mobileUserName">User</span>
-                </div>
-                <button class="logout-btn" id="mobileLogoutBtn">Logout</button>
+            <div id="mobileAuthButtons" class="flex space-x-4 pt-3">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">Login</button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">Sign
+                    Up</button>
             </div>
 
-            <!-- Mobile Auth Buttons (shown when not logged in) -->
-            <div id="mobileAuthButtons" class="flex space-x-4">
-                <button id="mobileLoginBtn"
-                    class="text-white bg-black font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition duration-300">
-                    Login
-                </button>
-                <button id="mobileSignupBtn"
-                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded-[5px] border border-[#e8a425] hover:bg-black hover:text-white transition duration-300">
-                    Sign Up
-                </button>
+            <div id="mobileUserArea" class="hidden flex items-center space-x-3 text-white">
+                <span id="mobileUserNameDisplay" class="font-medium"></span>
+                <button id="mobileLogoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
             </div>
         </div>
     </nav>
-
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
             <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" required>
+                <div class="form-group mb-3">
+                    <label for="loginEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="loginEmailError"></div>
                 </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
+                <div class="form-group mb-3">
+                    <label for="loginPassword" class="block mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="loginPasswordError"></div>
                 </div>
-                <button type="submit" class="btn-primary flex justify-center items-center" id="loginSubmitBtn">
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="loginSubmitBtn">
                     <span id="loginText">Login</span>
                     <div id="loginSpinner" class="loading-spinner"></div>
                 </button>
             </form>
 
-            <!-- Social Login Buttons -->
             <div class="social-login mt-4 flex flex-col space-y-3">
                 <button id="googleLoginBtn" class="btn-social btn-google">
                     <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
@@ -191,8 +174,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </button>
             </div>
 
-            <div class="auth-toggle mt-4">
-                Don't have an account? <a id="showSignup">Sign up</a>
+            <div class="auth-toggle mt-4 text-center">
+                Don't have an account? <span id="showSignup" class="text-blue-600 cursor-pointer">Sign up</span>
             </div>
 
             <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
@@ -204,39 +187,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-
     <!-- Signup Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
             <form id="signupForm">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
+                <div class="form-group mb-3">
+                    <label for="signupName" class="block mb-1">Full Name</label>
+                    <input type="text" id="signupName" required class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="signupNameError"></div>
                 </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" required>
+                <div class="form-group mb-3">
+                    <label for="signupEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="signupEmail" required class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="signupEmailError"></div>
                 </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
+                <div class="form-group mb-3">
+                    <label for="signupPassword" class="block mb-1">Password</label>
+                    <input type="password" id="signupPassword" required class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="signupPasswordError"></div>
                 </div>
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" required>
+                <div class="form-group mb-3">
+                    <label for="signupConfirmPassword" class="block mb-1">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required
+                        class="w-full border px-3 py-2 rounded" />
                     <div class="error-message" id="signupConfirmPasswordError"></div>
                 </div>
-                <button type="submit" class="btn-primary flex justify-center items-center" id="signupSubmitBtn">
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="signupSubmitBtn">
                     <span id="signupText">Sign Up</span>
                     <div id="signupSpinner" class="loading-spinner"></div>
                 </button>
             </form>
 
-            <!-- Social Signup -->
             <div class="social-signup mt-4 flex flex-col space-y-3">
                 <button id="googleSignupBtn" class="btn-social btn-google">
                     <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
@@ -248,8 +230,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </button>
             </div>
 
-            <div class="auth-toggle mt-4">
-                Already have an account? <a id="showLogin">Login</a>
+            <div class="auth-toggle mt-4 text-center">
+                Already have an account? <span id="showLogin" class="text-blue-600 cursor-pointer">Login</span>
             </div>
 
             <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
@@ -261,18 +243,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
 
-
-    <!-- Verification Message Modal -->
+    <!-- Verification Modal -->
     <div id="verificationModal" class="modal">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
             <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
-                inbox/spam
-                and click the link to verify your account.</p>
+                inbox/spam and click the link to verify your account.</p>
             <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
-            <button id="closeVerificationModal" class="btn-primary">
-                OK
-            </button>
+            <button id="closeVerificationModal" class="btn-primary w-full">OK</button>
         </div>
     </div>
 
@@ -281,12 +259,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
             <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
-            <button id="closeResendVerificationModal" class="btn-primary">
-                OK
-            </button>
+            <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
         </div>
     </div>
-
     <!-- Hero Slider Section -->
     <section id="home" class="slider-container pt-20" id="slider">
         <!-- Slide 1 -->
@@ -303,42 +278,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     alt="Galaxy Realtors Luxury Property">
             </picture>
         </div>
-
-        <!-- Slide 2 -->
-        <!-- <div class="slide">
-            <picture>
-                <source media="(min-width:1024px)"
-                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763050124/1920_3rd_slider_on2zll.png">
-                <source media="(min-width:768px)"
-                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763049124/1280_3rd_slider_gdxncl.png">
-                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763049068/768_3rd_slider_zszhdc.png"
-                    alt="Luxury Villa">
-            </picture>
-        </div> -->
-
-        <!-- Slide 3 -->
-        <!-- <div class="slide">
-            <picture>
-                <source media="(min-width:1024px)"
-                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763213111/1920_1_gfnc5f.png">
-                <source media="(min-width:768px)"
-                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763049098/1280_ew8omm.png">
-                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763049079/768_rr2sbz.png"
-                    alt="Modern Architecture">
-            </picture>
-        </div> -->
-
-        <!-- Slide counter -->
-        <!-- <div class="slide-counter">
-            <span id="currentSlide">1</span> / <span id="totalSlides">3</span>
-        </div> -->
-
-        <!-- Arrows -->
-        <!-- <button class="nav-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button> -->
-        <!-- <button class="nav-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button> -->
-
-        <!-- Dots -->
-        <!-- <div class="dots-container" id="dots"></div> -->
     </section>
     <!-- Featured Properties Section -->
     <section id="properties" class="py-20 bg-white">
@@ -471,25 +410,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 style="display:none;">
 
                 <!-- Example BUCH -->
-                <a href="One-Kanal-House-DHA-Sector-Q-Multan.html" class="block group">
-                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <div class="h-64 bg-cover bg-center"
-                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1763557074/Galaxyrealtorbuilder_aisdf5.jpg')">
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
-                                One Kanal House
-                            </h3>
-                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
-                            <p class="text-gray-600 mb-4">DHA Sector-Q, Multan</p>
-                            <div
-                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
-                                View Details</div>
-                        </div>
-                    </div>
-                </a>
-
             </div>
 
         </div>
@@ -878,28 +798,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
     <script>const buttons = document.querySelectorAll(".filter-btn");
-    const sections = document.querySelectorAll(".property-section");
+        const sections = document.querySelectorAll(".property-section");
 
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const target = btn.getAttribute("data-target");
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.getAttribute("data-target");
 
-            // Reset all buttons
-            buttons.forEach(b => {
-                b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
-                b.style.color = "black";
+                // Reset all buttons
+                buttons.forEach(b => {
+                    b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
+                    b.style.color = "black";
+                });
+
+                // Activate clicked button
+                btn.style.backgroundColor = "#e8a425";
+                btn.style.color = "white";
+
+                // Filter Sections
+                sections.forEach(sec => {
+                    sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
+                });
             });
-
-            // Activate clicked button
-            btn.style.backgroundColor = "#e8a425";
-            btn.style.color = "white";
-
-            // Filter Sections
-            sections.forEach(sec => {
-                sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
-            });
-        });
-    });</script>
+        });</script>
 </body>
 
 </html>

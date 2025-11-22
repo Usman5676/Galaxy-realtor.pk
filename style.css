@@ -202,171 +202,6 @@
     height: 35px;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
-    border-color: #e8a425;
-    outline: none;
-}
-
-.error-message {
-    color: #e53e3e;
-    font-size: 14px;
-    margin-top: 5px;
-    display: none;
-}
-
-.success-message {
-    color: #38a169;
-    font-size: 14px;
-    margin-top: 5px;
-    display: none;
-}
-
-.auth-toggle {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.auth-toggle a {
-    color: #e8a425;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.user-menu {
-    display: none;
-    align-items: center;
-    gap: 10px;
-}
-
-.user-avatar {
-    width: 36px;
-    height: 36px;
-    background-color: #e8a425;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    font-weight: bold;
-}
-
-.user-name {
-    color: white;
-    font-weight: 500;
-}
-
-.logout-btn {
-    background: none;
-    border: 1px solid #e8a425;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: #e8a425;
-    color: black;
-}
-
-.verification-banner {
-    display: none;
-    background-color: #e8a425;
-    color: black;
-    padding: 10px 15px;
-    text-align: center;
-    font-weight: 500;
-    position: relative;
-    z-index: 40;
-}
-
-.resend-verification {
-    color: #1a56db;
-    text-decoration: underline;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.loading-spinner {
-    display: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #e8a425;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.btn-primary {
-    background-color: black;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-.btn-primary:hover {
-    background-color: #e8a425;
-    color: black;
-}
-
-.btn-primary:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
 .slider-container {
     position: relative;
     overflow: hidden;
@@ -461,45 +296,132 @@
     font-size: 14px;
     z-index: 10;
 }
-/* Common Social Button Style */
+/* ===================== MODALS ===================== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  padding: 1.6rem;
+  border-radius: 0.75rem;
+  width: 95%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ===================== BUTTONS ===================== */
+.btn-primary {
+  background: #e8a425;
+  color: #000;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #cc8a1e;
+}
+
+.btn-primary:disabled {
+  background: #bbbbbb;
+  cursor: not-allowed;
+}
+
 .btn-social {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  width: 100%;
 }
 
-/* Google Button */
 .btn-google {
-    background: #DB4437; /* Google Red */
-}
-.btn-google:hover {
-    background: #C1351D;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  background: #fff;
+  border: 1px solid #ddd;
 }
 
-/* Facebook Button */
 .btn-facebook {
-    background: #1877F2; /* Facebook Blue */
-}
-.btn-facebook:hover {
-    background: #145DBF;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  background: #1877f2;
+  color: white;
 }
 
-/* Icon inside button */
-.btn-social img {
-    width: 20px;
-    height: 20px;
+/* ===================== SPINNER ===================== */
+.loading-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin-left: 8px;
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================== INPUT ERRORS ===================== */
+.error-message {
+  color: #d53030;
+  font-size: 0.85rem;
+  min-height: 1.05rem;
+}
+
+/* ===================== VERIFICATION MESSAGE ===================== */
+.verification-banner {
+  display: none;
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff7e0;
+  color: #7a4b00;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  z-index: 70;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.resend-verification {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  color: #065f46;
+}
+
+/* ===================== MOBILE ===================== */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1.2rem;
+    max-width: 360px;
+  }
+
+  input,
+  button {
+    font-size: 15px;
+  }
+}
+
+
+
