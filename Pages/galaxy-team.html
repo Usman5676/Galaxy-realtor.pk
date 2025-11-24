@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Realtors - Privacy Policy</title>
+    <link rel="stylesheet" href="/Style/style.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                    alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden xl:flex items-center space-x-8">
+                <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+                <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+                <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+                <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+                <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+                <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button id="loginBtn"
+                        class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">
+                        Login
+                    </button>
+                    <button id="signupBtn"
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">
+                        Sign Up
+                    </button>
+                    <div id="userArea" class="hidden items-center space-x-3 text-white">
+                        <span id="userNameDisplay" class="font-medium"></span>
+                        <button id="logoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="xl:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden flex flex-col items-center bg-black xl:hidden space-y-5 py-6 border-t border-gray-800">
+            <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+            <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+            <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+            <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+            <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+            <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+
+            <div id="mobileAuthButtons" class="flex space-x-4 pt-3">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">Login</button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">Sign
+                    Up</button>
+            </div>
+
+            <div id="mobileUserArea" class="hidden flex items-center space-x-3 text-white">
+                <span id="mobileUserNameDisplay" class="font-medium"></span>
+                <button id="mobileLogoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group mb-3">
+                    <label for="loginEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="loginPassword" class="block mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+
+            <div class="social-login mt-4 flex flex-col space-y-3">
+                <button id="googleLoginBtn" class="btn-social btn-google">
+                    <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
+                    Login with Google
+                </button>
+                <button id="facebookLoginBtn" class="btn-social btn-facebook">
+                    <img src="https://img.icons8.com/color/24/facebook-new.png" alt="Facebook logo" class="inline mr-2">
+                    Login with Facebook
+                </button>
+            </div>
+
+            <div class="auth-toggle mt-4 text-center">
+                Don't have an account? <span id="showSignup" class="text-blue-600 cursor-pointer">Sign up</span>
+            </div>
+
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group mb-3">
+                    <label for="signupName" class="block mb-1">Full Name</label>
+                    <input type="text" id="signupName" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="signupEmail" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupPassword" class="block mb-1">Password</label>
+                    <input type="password" id="signupPassword" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupConfirmPassword" class="block mb-1">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required
+                        class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+
+            <div class="social-signup mt-4 flex flex-col space-y-3">
+                <button id="googleSignupBtn" class="btn-social btn-google">
+                    <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
+                    Sign up with Google
+                </button>
+                <button id="facebookSignupBtn" class="btn-social btn-facebook">
+                    <img src="https://img.icons8.com/color/24/facebook-new.png" alt="Facebook logo" class="inline mr-2">
+                    Sign up with Facebook
+                </button>
+            </div>
+
+            <div class="auth-toggle mt-4 text-center">
+                Already have an account? <span id="showLogin" class="text-blue-600 cursor-pointer">Login</span>
+            </div>
+
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
+                inbox/spam and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary w-full">OK</button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
+        </div>
+    </div>
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-tooltip">
+            <span>💬 For any query</span>
+        </div>
+        <a href="https://wa.me/923000172599" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+    <!-- TEAM MEMBERS SECTION -->
+    <section class="w-full pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold text-[#e8a425] mb-4">Meet Our Galaxy Team</h1>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+                    Our dedicated team of professionals brings expertise, innovation, and passion to deliver exceptional
+                    real estate solutions.
+                </p>
+            </div>
+
+            <!-- Leadership Team -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Leadership Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- CEO -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-6 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                                    alt="CEO" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Ahmed Khan</h3>
+                            <p class="text-[#e8a425] font-medium mb-3">CEO & Founder</p>
+                            <p class="text-gray-600 mb-4">With over 15 years in real estate, Ahmed founded Galaxy
+                                Realtors with a vision to transform property services in Pakistan.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- COO -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-6 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80"
+                                    alt="COO" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Fatima Ali</h3>
+                            <p class="text-[#e8a425] font-medium mb-3">Chief Operations Officer</p>
+                            <p class="text-gray-600 mb-4">Fatima ensures smooth operations across all departments,
+                                bringing efficiency and strategic planning to our daily processes.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Sales Director -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-6 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                                    alt="Sales Director" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Bilal Ahmed</h3>
+                            <p class="text-[#e8a425] font-medium mb-3">Sales Director</p>
+                            <p class="text-gray-600 mb-4">Bilal leads our sales team with innovative strategies and deep
+                                market knowledge to maximize client satisfaction.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Team -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Technical Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Web Developer -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763985369/Web_Developer_opfbjs.jpg"
+                                    alt="Web Developer" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Muhammad Usman Riaz</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">Web Developer</p>
+                            <p class="text-gray-600 text-sm mb-3">Creates and maintains our digital platforms with
+                                cutting-edge technology.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- UI/UX Designer -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80"
+                                    alt="UI/UX Designer" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Sana Khan</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">UI/UX Designer</p>
+                            <p class="text-gray-600 text-sm mb-3">Designs intuitive and beautiful user experiences for
+                                our digital products.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Mobile Developer -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                                    alt="Mobile Developer" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Omar Farooq</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">Mobile Developer</p>
+                            <p class="text-gray-600 text-sm mb-3">Develops our mobile applications for iOS and Android
+                                platforms.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- System Administrator -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1551836026-d5c88ac5c73d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                                    alt="System Administrator" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Kamran Malik</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">System Administrator</p>
+                            <p class="text-gray-600 text-sm mb-3">Manages our IT infrastructure and ensures system
+                                security and reliability.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Team -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Marketing Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Marketing Manager -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80"
+                                    alt="Marketing Manager" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Ayesha Raza</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">Marketing Manager</p>
+                            <p class="text-gray-600 text-sm mb-3">Develops and executes marketing strategies to grow our
+                                brand presence.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Digital Marketer -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1556157382-97eda3ac2b99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                                    alt="Digital Marketer" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Hina Aslam</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">Digital Marketer</p>
+                            <p class="text-gray-600 text-sm mb-3">Manages our digital campaigns, SEO, and social media
+                                presence.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Content Creator -->
+                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="p-5 flex flex-col items-center text-center">
+                            <div class="rounded-full overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+                                    alt="Content Creator" class="profile-img rounded-full">
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1">Zainab Shah</h3>
+                            <p class="text-[#e8a425] text-sm font-medium mb-2">Content Creator</p>
+                            <p class="text-gray-600 text-sm mb-3">Creates engaging content for our website, blogs, and
+                                social media channels.</p>
+                            <div class="flex space-x-3 mt-2">
+                                <!-- Phone Icon -->
+                                <a href="tel:+923001234567" class="social-icon text-gray-500 hover:text-[#e8a425]"
+                                    title="Call">
+                                    <ion-icon name="call-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- Email Icon -->
+                                <a href="mailto:email@example.com"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="Email">
+                                    <ion-icon name="mail-outline" class="text-lg"></ion-icon>
+                                </a>
+
+                                <!-- WhatsApp Icon -->
+                                <a href="https://wa.me/923001234567" target="_blank"
+                                    class="social-icon text-gray-500 hover:text-[#e8a425]" title="WhatsApp">
+                                    <ion-icon name="logo-whatsapp" class="text-lg"></ion-icon>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
+        <div class="container mx-auto px-6">
+            <!-- Top section: Logo + Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+
+                <!-- Logo -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                            alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                        <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-6">
+                    <a href="https://www.youtube.com/@galaxyrealtorsbuilders" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-youtube" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.facebook.com/share/1BhmVAj7vN/" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-facebook" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/galaxyrealtorsbuilders?igsh=MWRwZTY2cjRuZnN6ZQ==" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-instagram" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.tiktok.com/@galaxyrealtorsbuilders?_r=1&_t=ZS-915oh1iyWw4" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-tiktok" class="h-6 w-6"></ion-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Center section: Required Pages Links -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
+                <a href="/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Privacy Policy
+                </a>
+                <a href="/about-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    About Us
+                </a>
+                <a href="/contact-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Contact Us
+                </a>
+                <a href="/terms-and-conditions.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Terms & Conditions
+                </a>
+            </div>
+
+            <!-- Bottom section: Copyright -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
+                <p>© 2025 Galaxy Realtors Builders — All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

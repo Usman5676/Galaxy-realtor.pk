@@ -422,3 +422,39 @@
     font-size: 15px;
   }
 }
+/* team member */
+  .team-member-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 4px solid #e8a425;
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #e8a425;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #e8a425;
+        }
