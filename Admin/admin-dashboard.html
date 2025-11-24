@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,9 +10,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <style>
     .message-text {
@@ -31,7 +32,7 @@
 
     <div class="p-4 border-b border-[#e8a425] flex items-center space-x-2">
       <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
-          class="w-10 h-10" />
+        class="w-10 h-10" />
       <div>
         <h1 class="text-lg font-bold text-[#e8a425]">Galaxy Realtors</h1>
         <p class="text-xs text-gray-400">Admin Panel</p>
@@ -39,14 +40,11 @@
     </div>
 
     <nav class="mt-4">
-      <a href="admin-dashboard.html"
-        class="block py-3 px-4 hover:bg-gray-900 transition">Dashboard</a>
+      <a href="admin-dashboard.html" class="block py-3 px-4 hover:bg-gray-900 transition">Dashboard</a>
 
-      <a href="admin-dashboard.html"
-        class="block py-3 px-4 bg-[#e8a425] text-black font-semibold">Contact Messages</a>
+      <a href="admin-dashboard.html" class="block py-3 px-4 bg-[#e8a425] text-black font-semibold">Contact Messages</a>
 
-      <a id="logoutBtn"
-        class="block py-3 px-4 text-red-400 hover:bg-gray-900 cursor-pointer mt-4">
+      <a id="logoutBtn" class="block py-3 px-4 text-red-400 hover:bg-gray-900 cursor-pointer mt-4">
         Logout
       </a>
     </nav>
@@ -59,12 +57,9 @@
   <main class="flex-1 min-h-screen">
 
     <!-- MOBILE MENU BTN -->
-    <button id="mobileMenuBtn"
-      class="lg:hidden fixed top-4 right-4 z-50 bg-[#e8a425] p-2 rounded-lg shadow-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-        viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16" />
+    <button id="mobileMenuBtn" class="lg:hidden fixed top-4 right-4 z-50 bg-[#e8a425] p-2 rounded-lg shadow-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
@@ -98,7 +93,9 @@
               </tr>
             </thead>
             <tbody id="messagesTable">
-              <tr><td colspan="6" class="p-4 text-center">Loading...</td></tr>
+              <tr>
+                <td colspan="6" class="p-4 text-center">Loading...</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -217,4 +214,5 @@
   </script>
 
 </body>
+
 </html>

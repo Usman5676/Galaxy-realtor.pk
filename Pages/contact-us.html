@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Realtors-About Us</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Galaxy Realtors-Contact Us</title>
+    <link rel="stylesheet" href="/Style/style.css">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +15,9 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,7 +119,7 @@
 </head>
 
 <body class="bg-white text-gray-800">
-   <!-- Verification Banner -->
+    <!-- Verification Banner -->
     <div id="verificationBanner" class="verification-banner">
         Please verify your email address to access all features.
         <span id="resendVerification" class="resend-verification">Resend verification email</span>
@@ -319,6 +322,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
         </a>
     </div>
+    <div id="notificationContainer"></div>
 
     <!-- CONTACT US SECTION -->
     <section class="w-full min-h-screen bg-white flex items-center justify-center px-6 pt-32 pb-20">
@@ -404,7 +408,7 @@
         </div>
     </section>
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
         <div class="container mx-auto px-6">
             <!-- Top section: Logo + Social Icons -->
@@ -465,14 +469,7 @@
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
-    <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
-
-    <!-- Firebase for Contact Form -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
+    <script src="/Script/"></script>
     <script>
         // Firebase configuration for contact form
         const firebaseConfig = {
