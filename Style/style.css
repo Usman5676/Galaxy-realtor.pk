@@ -458,3 +458,264 @@
             height: 3px;
             background: #e8a425;
         }
+        /* ===================== PLOT SIZE CONVERTOR ===================== */
+                .converter-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: calc(100vh - 200px);
+        }
+        
+        .converter-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .converter-header {
+            background: #e8a425;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .input-field:focus {
+            border-color: #e8a425;
+            box-shadow: 0 0 0 2px rgba(232, 164, 37, 0.2);
+            outline: none;
+        }
+        
+        .btn-convert {
+            background: #e8a425;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-convert:hover:not(.btn-loading) {
+            background: #d1941f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .unit-label {
+            font-weight: 500;
+        }
+        
+        .unit-value {
+            font-weight: 600;
+            color: #e8a425;
+        }
+        
+        .history-section {
+            margin-top: 2rem;
+        }
+        
+        .history-item {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid #e8a425;
+        }
+        
+        .history-value {
+            font-weight: 600;
+        }
+        
+        .history-date {
+            font-size: 0.875rem;
+            color: #6c757d;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #0d6efd;
+        }
+        
+        .info-text {
+            color: #495057;
+            line-height: 1.6;
+        }
+        
+        .login-prompt {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .login-prompt a {
+            color: #e8a425;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+
+        /* Custom Notification Styles */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease-in-out;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-left: 4px solid #047857;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-left: 4px solid #b91c1c;
+        }
+
+        .notification.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-left: 4px solid #b45309;
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #e8a425;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* AdSense Container */
+        .adsense-container {
+            width: 100%;
+            margin: 2rem 0;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px dashed #dee2e6;
+        }
+
+        .adsense-placeholder {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        /* Modal Center Fix */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }

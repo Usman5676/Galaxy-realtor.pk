@@ -4,15 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Kanal House DHA Sector H Multan</title>
+    <title>Galaxy Realtors | Luxury Real Estate</title>
+    <link rel="stylesheet" href="Style/style.css">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
- <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,13 +26,48 @@
 
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
     <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
         href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+    <!-- gooogle tag manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W43PV9XN');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body class="bg-white text-gray-800">
-   <!-- Verification Banner -->
+    <!-- Verification Banner -->
     <div id="verificationBanner" class="verification-banner">
         Please verify your email address to access all features.
         <span id="resendVerification" class="resend-verification">Resend verification email</span>
@@ -38,7 +77,7 @@
     <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
         <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="https://galaxyrealtor.pk/" class="flex items-center space-x-2">
+            <a href="#" class="flex items-center space-x-2">
                 <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
                     alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
                 <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
@@ -46,12 +85,12 @@
 
             <!-- Desktop Menu -->
             <div class="hidden xl:flex items-center space-x-8">
-                <a href="../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
-                <a href="../index.html#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
-                <a href="../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
-                <a href="../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
-                <a href="../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
-                <a href="../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+                <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+                <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+                <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+                <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+                <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+                <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
@@ -82,12 +121,12 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="hidden flex flex-col items-center bg-black xl:hidden space-y-5 py-6 border-t border-gray-800">
-            <a href="../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
-            <a href="../index.html#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
-            <a href="../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
-            <a href="../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
-            <a href="../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
-            <a href="../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+            <a href="#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+            <a href="#properties" class="text-white hover:text-[#e8a425] transition">Properties</a>
+            <a href="#about" class="text-white hover:text-[#e8a425] transition">About</a>
+            <a href="#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+            <a href="#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+            <a href="#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
             <div id="mobileAuthButtons" class="flex space-x-4 pt-3">
                 <button id="mobileLoginBtn"
@@ -576,6 +615,7 @@
             </div>
         </div>
     </section>
+   
     <div class="whatsapp-wrapper">
         <div class="whatsapp-tooltip">
             <span>💬 For any query</span>
@@ -623,7 +663,7 @@
 
             <!-- Center section: Required Pages Links -->
             <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
-                 <a href="/Pages/galaxy-team.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                  <a href="/Pages/galaxy-team.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
                     Meet the Team
                 </a>
                 <a href="/Pages/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
@@ -647,11 +687,35 @@
         </div>
     </footer>
 
+
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/Script/script.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
+    <script>const buttons = document.querySelectorAll(".filter-btn");
+        const sections = document.querySelectorAll(".property-section");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.getAttribute("data-target");
+
+                // Reset all buttons
+                buttons.forEach(b => {
+                    b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
+                    b.style.color = "black";
+                });
+
+                // Activate clicked button
+                btn.style.backgroundColor = "#e8a425";
+                btn.style.color = "white";
+
+                // Filter Sections
+                sections.forEach(sec => {
+                    sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
+                });
+            });
+        });</script>
 </body>
 
 </html>

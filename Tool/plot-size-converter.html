@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Realtors - Meet the Team </title>
+    <title>Galaxy Realtors - Plot Size Converter </title>
     <link rel="stylesheet" href="Style/style.css">
 
     <!-- Tailwind CSS CDN -->
@@ -262,117 +262,127 @@
             <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
         </div>
     </div>
-    <!-- TEAM MEMBERS SECTION -->
-    <section class="w-full pt-32 pb-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <!-- Page Header -->
-            <div class="text-center mb-16">
-                <h1 class="text-4xl font-bold text-[#e8a425] mb-4">Meet Our Galaxy Team</h1>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
-                    Our dedicated team of professionals brings expertise, innovation, and passion to deliver exceptional
-                    real estate solutions.
-                </p>
-            </div>
+     <!-- Notification Container -->
+    <div id="notificationContainer"></div>
 
-            <!-- Leadership Team -->
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Leadership Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- CEO -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763987440/Basit_bhai_rnw7jc.jpg"
-                                    alt="CEO" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Basit Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">CEO & Founder</p>
-                            <p class="text-gray-600 mb-4">With over 07 years in real estate, Mr. Basit founded Galaxy
-                                Realtors with a vision to transform property services in Pakistan.</p>
-                        </div>
-                    </div>
-
-                    <!-- COO -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763988841/Naeem_awan_irgv0m.jpg"
-                                    alt="COO" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Naeem Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">Director</p>
-                            <p class="text-gray-600 mb-4">
-                                Mr. Naeem ensures smooth operations across all departments,
-                                bringing efficiency and strategic planning to our daily processes.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Sales Director -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763996030/AWAIS_jnnk76.jpg"
-                                    alt="Sales Director" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Awais Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">Business Developer</p>
-                            <p class="text-gray-600 mb-4">
-                                Mr. Awais leads our business development initiatives with strategic planning
-                                and strong market insight to drive company growth and client satisfaction.
-                            </p>
-                        </div>
-                    </div>
+    <!-- Plot Size Converter Section -->
+    <section class="converter-section pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="converter-card">
+                <div class="converter-header">
+                    <h1 class="text-3xl font-bold">Plot Size Converter</h1>
+                    <p class="mt-2">Convert between different area measurement units</p>
                 </div>
-            </div>
-
-            <!-- Technical Team -->
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Technical Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Web Developer -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763985369/Web_Developer_opfbjs.jpg"
-                                    alt="Web Developer" class="profile-img rounded-full">
+                
+                <div class="p-6">
+                    <!-- AdSense Container
+                    <div class="adsense-container">
+                        <div class="adsense-placeholder"> -->
+                            <!-- AdSense Advertisement - This space is approved for Google AdSense -->
+                        <!-- </div> -->
+                        <!-- AdSense Code would go here -->
+                        <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+                    <!-- </div> -->
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Input Section -->
+                        <div>
+                            <div class="input-group">
+                                <label class="input-label" for="inputValue">Enter Area Value</label>
+                                <input type="number" id="inputValue" class="input-field" placeholder="e.g., 500" min="0" step="0.01">
                             </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Muhammad Usman Riaz</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Web Developer</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Builds and optimizes high-performing websites with modern, scalable technologies.
-                            </p>
+                            
+                            <div class="input-group">
+                                <label class="input-label" for="inputUnit">From Unit</label>
+                                <select id="inputUnit" class="input-field">
+                                    <option value="sqft">Square Feet (sq ft)</option>
+                                    <option value="sqm">Square Meters (sq m)</option>
+                                    <option value="sqyd">Square Yards (sq yd)</option>
+                                    <option value="marla">Marla</option>
+                                    <option value="kanal">Kanal</option>
+                                    <option value="acre">Acre</option>
+                                    <option value="hectare">Hectare</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label class="input-label" for="outputUnit">To Unit</label>
+                                <select id="outputUnit" class="input-field">
+                                    <option value="sqft">Square Feet (sq ft)</option>
+                                    <option value="sqm">Square Meters (sq m)</option>
+                                    <option value="sqyd">Square Yards (sq yd)</option>
+                                    <option value="marla" selected>Marla</option>
+                                    <option value="kanal">Kanal</option>
+                                    <option value="acre">Acre</option>
+                                    <option value="hectare">Hectare</option>
+                                </select>
+                            </div>
+                            
+                            <button id="convertBtn" class="btn-convert mt-4">
+                                <span id="convertText">Convert</span>
+                                <div id="convertSpinner" class="loading-spinner"></div>
+                            </button>
+                        </div>
+                        
+                        <!-- Result Section -->
+                        <div>
+                            <div class="result-section">
+                                <h3 class="result-title">Conversion Result</h3>
+                                <div id="resultContainer">
+                                    <div class="result-item">
+                                        <span class="unit-label">Square Feet:</span>
+                                        <span id="sqftResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Square Meters:</span>
+                                        <span id="sqmResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Square Yards:</span>
+                                        <span id="sqydResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Marla:</span>
+                                        <span id="marlaResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Kanal:</span>
+                                        <span id="kanalResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Acre:</span>
+                                        <span id="acreResult" class="unit-value">-</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="unit-label">Hectare:</span>
+                                        <span id="hectareResult" class="unit-value">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Conversion History (for logged-in users) -->
+                            <div id="historySection" class="history-section" style="display: none;">
+                                <h3 class="result-title">Recent Conversions</h3>
+                                <div id="historyList">
+                                    <!-- History items will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Login Prompt for non-logged in users -->
+                            <!-- <div id="loginPrompt" class="login-prompt">
+                                <p>Want to save your conversion history? <a href="#" id="showLoginFromConverter">Login to your account</a></p>
+                            </div> -->
                         </div>
                     </div>
-                    <!-- Marketing Head -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763989624/Zain_v5ene9.jpg"
-                                    alt="Mobile Developer" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Zain Abbas</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Marketing Head</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Leads the marketing team with strategic planning, brand development, and innovative
-                                campaigns to drive business growth.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- System Administrator -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763989946/Shyan_pcbser.jpg"
-                                    alt="System Administrator" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Muhammad Shayan</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Graphic Designer</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Creates high-quality visual content and branding materials that strengthen our company’s
-                                identity.
-                            </p>
+                    
+                    <!-- Information Section -->
+                    <div class="info-box">
+                        <h3 class="info-title">About Area Measurement Units</h3>
+                        <div class="info-text">
+                            <p><strong>Square Feet (sq ft):</strong> Standard unit for measuring area in real estate, equal to the area of a square with sides of 1 foot.</p>
+                            <p><strong>Marla:</strong> Traditional unit used in South Asia, especially Pakistan and India. 1 Marla is typically 272.25 sq ft.</p>
+                            <p><strong>Kanal:</strong> Another traditional unit, with 1 Kanal equal to 20 Marlas or 5,445 sq ft.</p>
+                            <p><strong>Acre:</strong> Imperial unit of area, commonly used for larger land parcels. 1 Acre equals 43,560 sq ft.</p>
                         </div>
                     </div>
                 </div>
@@ -455,6 +465,7 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/Script/script.js"></script>
+        <script src="/Script/Plot-size-converter.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
     <script>const buttons = document.querySelectorAll(".filter-btn");
