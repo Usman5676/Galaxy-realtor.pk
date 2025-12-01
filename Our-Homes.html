@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Realtors - Meet the Team </title>
+    <title>Galaxy Realtors - Our Homes</title>
+    <link rel="stylesheet" href="Style/style.css">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -84,12 +85,12 @@
 
             <!-- Desktop Menu -->
             <div class="hidden xl:flex items-center space-x-8">
-                <a href="../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
-                <a href="../Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
-                <a href="../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
-                <a href="../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
-                <a href="../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
-                <a href="../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+                <a href="index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+                <a href="Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
+                <a href="index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
+                <a href="index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+                <a href="index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+                <a href="index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
@@ -120,12 +121,12 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="hidden flex flex-col items-center bg-black xl:hidden space-y-5 py-6 border-t border-gray-800">
-            <a href="../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
-            <a href="../Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
-            <a href="../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
-            <a href="../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
-            <a href="../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
-            <a href="../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+            <a href="index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+            <a href="Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
+            <a href="index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
+            <a href="index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+            <a href="index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+            <a href="index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
 
             <div id="mobileAuthButtons" class="flex space-x-4 pt-3">
                 <button id="mobileLoginBtn"
@@ -261,124 +262,176 @@
             <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
         </div>
     </div>
-    <!-- TEAM MEMBERS SECTION -->
-    <section class="w-full pt-32 pb-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <!-- Page Header -->
-            <div class="text-center mb-16">
-                <h1 class="text-4xl font-bold text-[#e8a425] mb-4">Meet Our Galaxy Team</h1>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
-                    Our dedicated team of professionals brings expertise, innovation, and passion to deliver exceptional
-                    real estate solutions.
-                </p>
+    <!-- Hero Slider Section -->
+    <!-- <section id="home" class="slider-container pt-20" id="slider"> -->
+        <!-- Slide 1 -->
+        <!-- <div class="slide active">
+            <picture> -->
+                <!-- Laptop -->
+                <!-- <source media="(min-width:1024px)"
+                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763396745/laptop_wuv57c.gif"> -->
+                <!-- Tablet -->
+                <!-- <source media="(min-width:768px)"
+                    srcset="https://res.cloudinary.com/delybxvjs/image/upload/v1763396795/tab_bqwzwa.gif"> -->
+                <!-- Mobile -->
+                <!-- <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763396825/mobile_plxxer.gif"
+                    alt="Galaxy Realtors Luxury Property">
+            </picture> -->
+        <!-- </div> -->
+    </section>
+    <!-- Featured Properties Section -->
+    <section id="properties" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mt-10" data-aos="fade-up">
+                Our Homes
+            </h2>
+
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="w-24 h-1 rounded-full bg-[#e8a425]"></div>
             </div>
 
-            <!-- Leadership Team -->
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Leadership Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- CEO -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763987440/Basit_bhai_rnw7jc.jpg"
-                                    alt="CEO" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Basit Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">CEO & Founder</p>
-                            <p class="text-gray-600 mb-4">With over 07 years in real estate, Mr. Basit founded Galaxy
-                                Realtors with a vision to transform property services in Pakistan.</p>
-                        </div>
-                    </div>
+            <!-- FILTER BUTTONS -->
+            <div class="flex justify-center gap-4 mb-10" data-aos="fade-up">
 
-                    <!-- COO -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763988841/Naeem_awan_irgv0m.jpg"
-                                    alt="COO" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Naeem Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">Director</p>
-                            <p class="text-gray-600 mb-4">
-                                Mr. Naeem ensures smooth operations across all departments,
-                                bringing efficiency and strategic planning to our daily processes.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Sales Director -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-6 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763996030/AWAIS_jnnk76.jpg"
-                                    alt="Sales Director" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">Malik Awais Iqbal Awan</h3>
-                            <p class="text-[#e8a425] font-medium mb-3">Business Developer</p>
-                            <p class="text-gray-600 mb-4">
-                                Mr. Awais leads our business development initiatives with strategic planning
-                                and strong market insight to drive company growth and client satisfaction.
-                            </p>
-                        </div>
-                    </div>
+                <div class="group">
+                    <button class="filter-btn px-4 py-2 rounded  transition bg-[#e8a425] text-white" data-target="all">
+                        All
+                    </button>
                 </div>
-            </div>
 
-            <!-- Technical Team -->
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 section-title">Technical Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Web Developer -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763985369/Web_Developer_opfbjs.jpg"
-                                    alt="Web Developer" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Muhammad Usman Riaz</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Web Developer</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Builds and optimizes high-performing websites with modern, scalable technologies.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Marketing Head -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763989624/Zain_v5ene9.jpg"
-                                    alt="Mobile Developer" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Zain Abbas</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Marketing Head</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Leads the marketing team with strategic planning, brand development, and innovative
-                                campaigns to drive business growth.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- System Administrator -->
-                    <div class="team-member-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                        <div class="p-5 flex flex-col items-center text-center">
-                            <div class="rounded-full overflow-hidden mb-4">
-                                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1763989946/Shyan_pcbser.jpg"
-                                    alt="System Administrator" class="profile-img rounded-full">
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-800 mb-1">Muhammad Shayan</h3>
-                            <p class="text-[#e8a425] text-sm font-medium mb-2">Graphic Designer</p>
-                            <p class="text-gray-600 text-sm mb-3">
-                                Creates high-quality visual content and branding materials that strengthen our company’s
-                                identity.
-                            </p>
-                        </div>
-                    </div>
+                <div class="group">
+                    <button
+                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
+                        data-target="dha">
+                        DHA
+                    </button>
                 </div>
+
+                <div class="group">
+                    <button
+                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
+                        data-target="buch">
+                        BUCH VILLAS
+                    </button>
+                </div>
+
             </div>
+
+
+
+            <!-- DHA LISTINGS -->
+            <div id="dha" class="property-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Property 1  DHA-->
+                <a href="Properties/DHA/One-Kanal-House-DHA-Sector-H-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1762590338/House2_jdhjhk.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                One Kanal House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-H, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Property 2 DHA -->
+                <a href="Properties/DHA/One-Kanal-House-DHA-Sector-M-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1762598962/House1_j5wrf2.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                One Kanal House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-M, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Property 3 DHA-->
+                <a href="Properties/DHA/One-Kanal-House2-DHA-Sector-M-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1762672981/House1_vskjny.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                One Kanal House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-M, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Property 4 DHA -->
+                <a href="Properties/DHA/One-Kanal-House-DHA-Sector-Q-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1763557074/Galaxyrealtorbuilder_aisdf5.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                One Kanal House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 5,30,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-Q, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+                <!--Property 5 DHA-->
+                 <a href="Properties/DHA/10-Marla-House-DHA-Sector-B1-Multan.html" class="block group">
+                    <div class="property-card bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer transition transform hover:-translate-y-1 hover:shadow-2xl"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://res.cloudinary.com/delybxvjs/image/upload/v1763618705/property_for_sale_galaxy_house_pvzxwk.jpg')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-[#e8a425] transition">
+                                10 Marla House
+                            </h3>
+                            <p class="text-gold-500 font-bold text-lg mb-2">PKR: 2,80,00,000</p>
+                            <p class="text-gray-600 mb-4">DHA Sector-B1, Multan</p>
+                            <div
+                                class="w-full bg-[#e8a425] text-white py-2 rounded-lg text-center group-hover:bg-gold-500 group-hover:text-black transition">
+                                View Details</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- BUCH LISTINGS -->
+            <div id="buch" class="property-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                style="display:none;">
+
+                <!-- Example BUCH -->
+            </div>
+
         </div>
     </section>
-
     <div class="whatsapp-wrapper">
         <div class="whatsapp-tooltip">
             <span>💬 For any query</span>
@@ -426,7 +479,7 @@
 
             <!-- Center section: Required Pages Links -->
             <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
-                <a href="/Pages/galaxy-team.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                  <a href="/Pages/galaxy-team.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
                     Meet the Team
                 </a>
                 <a href="/Pages/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
@@ -453,12 +506,9 @@
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="../Style/style.css">
-
-    <script src="../Script/script.js"></script>
-    <script src="../firebase-config.js"></script>
-    <script src="../auth.js"></script>
-
+    <script src="/Script/script.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
     <script>const buttons = document.querySelectorAll(".filter-btn");
         const sections = document.querySelectorAll(".property-section");
 
