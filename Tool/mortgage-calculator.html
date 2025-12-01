@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galaxy Realtors - Privacy Policy</title>
+    <title>Galaxy Realtors - About Us</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- icon -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,6 +52,17 @@
 
         gtag('config', 'G-HK0HLBTK4H');
     </script>
+    <!-- gooogle tag manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W43PV9XN');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body class="bg-white text-gray-800">
@@ -62,7 +76,7 @@
     <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
         <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="https://galaxyrealtor.pk/" class="flex items-center space-x-2">
+            <a href="#" class="flex items-center space-x-2">
                 <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
                     alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
                 <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
@@ -71,7 +85,7 @@
             <!-- Desktop Menu -->
             <div class="hidden xl:flex items-center space-x-8">
                 <a href="../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
-                <a href="../Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
+                <a href="Our-Home.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
                 <a href="../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
                 <a href="../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
                 <a href="../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
@@ -247,6 +261,38 @@
             <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
         </div>
     </div>
+<!-- UNDER DEVELOPMENT SECTION -->
+<section class="py-24 px-6 bg-gradient-to-br from-gray-50 to-purple-50">
+    <div class="max-w-3xl mx-auto text-center">
+
+        <!-- Icon Circle -->
+        <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-purple-100 flex items-center justify-center shadow-inner">
+            <i class="fas fa-home text-4xl text-purple-600"></i>
+        </div>
+
+        <!-- Title -->
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Mortgage Calculator
+            <span class="text-purple-600">is Under Development</span>
+        </h2>
+
+        <!-- Subtitle -->
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+            We’re working on building an advanced mortgage calculator that will help you estimate your home loan 
+            payments with accuracy and ease. This feature will be available soon!
+        </p>
+
+        <!-- Coming Soon Tag -->
+        <div class="inline-block bg-purple-600 text-white py-3 px-8 rounded-xl shadow-md text-lg font-semibold">
+            Coming Soon
+        </div>
+
+        <!-- Optional Message -->
+        <p class="text-gray-500 mt-6">
+            Stay tuned — exciting updates are on the way!
+        </p>
+    </div>
+</section>
     <div class="whatsapp-wrapper">
         <div class="whatsapp-tooltip">
             <span>💬 For any query</span>
@@ -255,219 +301,6 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
         </a>
     </div>
-
-    <!-- PRIVACY POLICY SECTION -->
-    <section class="w-full min-h-screen bg-white flex items-center justify-center px-6 pt-32 pb-20">
-        <div class="max-w-4xl w-full">
-            <h1 class="text-4xl font-bold text-[#e8a425] mb-6 text-center">Privacy Policy</h1>
-
-            <div class="rounded-lg p-8 space-y-8">
-                <!-- Introduction -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Introduction</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        At Galaxy Realtor Pakistan, accessible at <a
-                            href="https://galaxyrealtor.pk/">https://galaxyrealtor.pk/,</a> one of our main priorities
-                        is the privacy of our visitors. This Privacy Policy document contains types of information that
-                        is collected and recorded by Galaxy Realtor Pakistan and how we use it.
-                    </p>
-                    <div>
-                        <p class="text-gray-700">
-                            If you have additional questions or require more information about our Privacy Policy, do
-                            not hesitate to contact us through email at:
-                            <strong>galaxyrealtorsbuilders@gmail.com</strong>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Scope -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Scope</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        This privacy policy applies only to our online activities and is valid for visitors to our
-                        website with regards to the information that they shared and/or collect in Galaxy Realtor
-                        Pakistan. This policy is not applicable to any information collected offline or via channels
-                        other than this website.
-                    </p>
-                </div>
-
-                <!-- Consent -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Consent</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        By using our website, you hereby consent to our Privacy Policy and agree to its terms.
-                    </p>
-                </div>
-
-                <!-- Information We Collect -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Information We Collect</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        The personal information that you are asked to provide, and the reasons why you are asked to
-                        provide it, will be made clear to you at the point we ask you to provide your personal
-                        information.
-                    </p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mt-4">Direct Contact</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        If you contact us directly, we may receive additional information about you such as your name,
-                        email address, phone number, the contents of the message and/or attachments you may send us, and
-                        any other information you may choose to provide.
-                    </p>
-
-                    <h3 class="text-xl font-semibold text-gray-800 mt-4">Account Registration</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        When you register for an Account, we may ask for your contact information, including items such
-                        as name, company name, address, email address, and telephone number.
-                    </p>
-                </div>
-
-                <!-- How We Use Your Information -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">How We Use Your Information</h2>
-                    <p class="text-gray-700 leading-relaxed">We use the information we collect in various ways,
-                        including to:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                        <li>Provide, operate, and maintain our website</li>
-                        <li>Improve, personalize, and expand our website</li>
-                        <li>Understand and analyze how you use our website</li>
-                        <li>Develop new products, services, features, and functionality</li>
-                        <li>Communicate with you, either directly or through one of our partners, including for customer
-                            service, to provide you with updates and other information relating to the website, and for
-                            marketing and promotional purposes</li>
-                        <li>Send you emails</li>
-                        <li>Find and prevent fraud</li>
-                    </ul>
-                </div>
-
-                <!-- Log Files -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Log Files</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        Galaxy Realtor Pakistan follows a standard procedure of using log files. These files log
-                        visitors when they visit websites. All hosting companies do this and a part of hosting services'
-                        analytics. The information collected by log files include internet protocol (IP) addresses,
-                        browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and
-                        possibly the number of clicks. These are not linked to any information that is personally
-                        identifiable. The purpose of the information is for analyzing trends, administering the site,
-                        tracking users' movement on the website, and gathering demographic information.
-                    </p>
-                </div>
-
-                <!-- Cookies and Web Beacons -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Cookies and Web Beacons</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        Like any other website, Galaxy Realtor Pakistan uses 'cookies'. These cookies are used to store
-                        information including visitors' preferences, and the pages on the website that the visitor
-                        accessed or visited. The information is used to optimize the users' experience by customizing
-                        our web page content based on visitors' browser type and/or other information.
-                    </p>
-                </div>
-
-                <!-- Third-Party Privacy Policies -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Third-Party Privacy Policies</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        Galaxy Realtor Pakistan's Privacy Policy does not apply to other advertisers or websites. Thus,
-                        we are advising you to consult the respective Privacy Policies of these third-party ad servers
-                        for more detailed information. It may include their practices and instructions about how to
-                        opt-out of certain options.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        You can choose to disable cookies through your individual browser options. To know more detailed
-                        information about cookie management with specific web browsers, it can be found at the browsers'
-                        respective websites.
-                    </p>
-                </div>
-
-                <!-- CCPA Privacy Rights -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">CCPA Privacy Rights</h2>
-                    <p class="text-gray-700 leading-relaxed">Under the CCPA, among other rights, California consumers
-                        have the right to:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                        <li>Request that a business that collects a consumer's personal data disclose the categories and
-                            specific pieces of personal data that a business has collected about consumers.</li>
-                        <li>Request that a business delete any personal data about the consumer that a business has
-                            collected.</li>
-                        <li>Request that a business that sells a consumer's personal data, not sell the consumer's
-                            personal data.</li>
-                    </ul>
-                    <p class="text-gray-700 leading-relaxed">
-                        If you make a request, we have one month to respond to you. If you would like to exercise any of
-                        these rights, please contact us.
-                    </p>
-                </div>
-
-                <!-- GDPR Data Protection Rights -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">GDPR Data Protection Rights</h2>
-                    <p class="text-gray-700 leading-relaxed">We would like to make sure you are fully aware of all of
-                        your data protection rights. Every user is entitled to the following:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                        <li><strong>The right to access</strong> – You have the right to request copies of your personal
-                            data.</li>
-                        <li><strong>The right to rectification</strong> – You have the right to request that we correct
-                            any information you believe is inaccurate.</li>
-                        <li><strong>The right to erasure</strong> – You have the right to request that we erase your
-                            personal data, under certain conditions.</li>
-                        <li><strong>The right to restrict processing</strong> – You have the right to request that we
-                            restrict the processing of your personal data, under certain conditions.</li>
-                        <li><strong>The right to object to processing</strong> – You have the right to object to our
-                            processing of your personal data, under certain conditions.</li>
-                        <li><strong>The right to data portability</strong> – You have the right to request that we
-                            transfer the data that we have collected to another organization, or directly to you, under
-                            certain conditions.</li>
-                    </ul>
-                    <p class="text-gray-700 leading-relaxed">
-                        If you make a request, we have one month to respond to you. If you would like to exercise any of
-                        these rights, please contact us.
-                    </p>
-                </div>
-
-                <!-- Children's Information -->
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold text-gray-800">Children's Information</h2>
-                    <p class="text-gray-700 leading-relaxed">
-                        Another part of our priority is adding protection for children while using the internet. We
-                        encourage parents and guardians to observe, participate in, and/or monitor and guide their
-                        online activity.
-                    </p>
-                    <p class="text-gray-700 leading-relaxed">
-                        Galaxy Realtor Pakistan does not knowingly collect any Personal Identifiable Information from
-                        children under the age of 13. If you think that your child provided this kind of information on
-                        our website, we strongly encourage you to contact us immediately and we will do our best efforts
-                        to promptly remove such information from our records.
-                    </p>
-                </div>
-
-                <!-- Contact Information
-                <div class="bg-gray-100 rounded-lg p-6 mt-8">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Information</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-gray-700">galaxyrealtorsbuilders@gmail.com</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span class="text-gray-700">Commercial #H-264, Sector H, DHA Multan</span>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="text-center text-gray-500 text-sm mt-8">
-                    <p>Last updated: November 2025</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
@@ -535,12 +368,37 @@
         </div>
     </footer>
 
+
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="../Style/style.css">
     <script src="../Script/script.js"></script>
     <script src="../firebase-config.js"></script>
     <script src="../auth.js"></script>
+
+    <script>const buttons = document.querySelectorAll(".filter-btn");
+        const sections = document.querySelectorAll(".property-section");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.getAttribute("data-target");
+
+                // Reset all buttons
+                buttons.forEach(b => {
+                    b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
+                    b.style.color = "black";
+                });
+
+                // Activate clicked button
+                btn.style.backgroundColor = "#e8a425";
+                btn.style.color = "white";
+
+                // Filter Sections
+                sections.forEach(sec => {
+                    sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
+                });
+            });
+        });</script>
 </body>
 
 </html>
