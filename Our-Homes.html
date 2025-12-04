@@ -292,31 +292,56 @@
             </div>
 
             <!-- FILTER BUTTONS -->
-            <div class="flex justify-center gap-4 mb-10" data-aos="fade-up">
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 px-2" data-aos="fade-up">
 
-                <div class="group">
-                    <button class="filter-btn px-4 py-2 rounded  transition bg-[#e8a425] text-white" data-target="all">
-                        All
-                    </button>
-                </div>
+                <!-- ALL -->
+                <button class="filter-btn flex items-center gap-3 px-4 py-2 rounded 
+        transition bg-[#e8a425] text-white" data-target="all">
 
-                <div class="group">
-                    <button
-                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
-                        data-target="dha">
-                        DHA
-                    </button>
-                </div>
+                    <div class="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764870481/ALL_jwy6sg.png" class="w-6 h-6 object-contain" alt="">
+                    </div>
 
-                <div class="group">
-                    <button
-                        class="filter-btn px-4 py-2 rounded transition bg-gray-200 group-hover:bg-gold-500 group-hover:text-black"
-                        data-target="buch">
-                        BUCH VILLAS
-                    </button>
-                </div>
+                    <span>All</span>
+                </button>
+                <!-- DHA -->
+                <button class="filter-btn flex items-center gap-3 px-4 py-2 rounded 
+        transition bg-gray-200 hover:bg-gold-500 hover:text-black" data-target="dha">
+
+                    <div class="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764869550/dha_oepnwy.png"
+                            class="w-6 h-6 object-contain" alt="">
+                    </div>
+
+                    <span>DHA</span>
+                </button>
+
+                <!-- BUCH VILLAS -->
+                <button class="filter-btn flex items-center gap-3 px-4 py-2 rounded 
+        transition bg-gray-200 hover:bg-gold-500 hover:text-black" data-target="buch">
+
+                    <div class="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764869631/Buch_Villas_LOGO_virtgy.avif"
+                            class="w-10 h-510 object-contain" alt="">
+                    </div>
+
+                    <span>BUCH VILLAS</span>
+                </button>
+
+                <!-- ROYAL ORCHARD -->
+                <button class="filter-btn flex items-center gap-3 px-4 py-2 rounded 
+        transition bg-gray-200 hover:bg-gold-500 hover:text-black" data-target="orchard">
+
+                    <div class="w-6 h-6 rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764870007/Logo-Royal-Ochard-Multan_oviwjj.jpg" class="w-6 h-6 object-contain" alt="">
+                    </div>
+
+                    <span>ROYAL ORCHARD</span>
+                </button>
 
             </div>
+
+
 
 
 
@@ -428,6 +453,11 @@
                 style="display:none;">
 
                 <!-- Example BUCH -->
+            </div>
+
+            <div id="orchard" class="property-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                style="display:none;">
+
             </div>
 
         </div>
