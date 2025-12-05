@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buch Villas Hamid - 9 Marla House</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Basic Favicon -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="32x32">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="16x16">
+
+    <!-- Apple / iPhone / iPad -->
+    <link rel="apple-touch-icon"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png">
+
+    <!-- Android / Chrome -->
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="192x192">
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/delybxvjs/image/upload/v1762238903/faviocn_fljzki.png" sizes="512x512">
+
+    <meta name="google-site-verification" content="mAwNfK4zTGf_cuoeaWhlOlJtYZZ8piX0D_Um3dpjy0I" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HK0HLBTK4H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HK0HLBTK4H');
+    </script>
+    <!-- gooogle tag manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W43PV9XN');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Verification Banner -->
+    <div id="verificationBanner" class="verification-banner">
+        Please verify your email address to access all features.
+        <span id="resendVerification" class="resend-verification">Resend verification email</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-black z-50 py-4 shadow-md">
+        <div class="max-w-[1280px] mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                    alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden xl:flex items-center space-x-8">
+                <a href="../../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+                <a href="../../Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
+                <a href="../../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
+                <a href="../../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+                <a href="../../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+                <a href="../../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+
+                <!-- Auth Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button id="loginBtn"
+                        class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">
+                        Login
+                    </button>
+                    <button id="signupBtn"
+                        class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">
+                        Sign Up
+                    </button>
+                    <div id="userArea" class="hidden items-center space-x-3 text-white">
+                        <span id="userNameDisplay" class="font-medium"></span>
+                        <button id="logoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="xl:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden flex flex-col items-center bg-black xl:hidden space-y-5 py-6 border-t border-gray-800">
+            <a href="../../index.html#home" class="text-white hover:text-[#e8a425] transition">Home</a>
+            <a href="../../Our-Homes.html" class="text-white hover:text-[#e8a425] transition">Our Homes</a>
+            <a href="../../index.html#about" class="text-white hover:text-[#e8a425] transition">About</a>
+            <a href="../../index.html#categories" class="text-white hover:text-[#e8a425] transition">Categories</a>
+            <a href="../../index.html#why-us" class="text-white hover:text-[#e8a425] transition">Why Us</a>
+            <a href="../../index.html#contact" class="text-white hover:text-[#e8a425] transition">Contact</a>
+
+            <div id="mobileAuthButtons" class="flex space-x-4 pt-3">
+                <button id="mobileLoginBtn"
+                    class="text-white bg-black font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-[#e8a425] hover:text-black transition">Login</button>
+                <button id="mobileSignupBtn"
+                    class="text-black bg-[#e8a425] font-semibold py-2 px-5 rounded border border-[#e8a425] hover:bg-black hover:text-white transition">Sign
+                    Up</button>
+            </div>
+
+            <div id="mobileUserArea" class="hidden flex items-center space-x-3 text-white">
+                <span id="mobileUserNameDisplay" class="font-medium"></span>
+                <button id="mobileLogoutBtn" class="text-sm px-3 py-1 rounded border border-[#e8a425]">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group mb-3">
+                    <label for="loginEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="loginEmailError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="loginPassword" class="block mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="loginPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="loginSubmitBtn">
+                    <span id="loginText">Login</span>
+                    <div id="loginSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+
+            <div class="social-login mt-4 flex flex-col space-y-3">
+                <button id="googleLoginBtn" class="btn-social btn-google">
+                    <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
+                    Login with Google
+                </button>
+                <button id="facebookLoginBtn" class="btn-social btn-facebook">
+                    <img src="https://img.icons8.com/color/24/facebook-new.png" alt="Facebook logo" class="inline mr-2">
+                    Login with Facebook
+                </button>
+            </div>
+
+            <div class="auth-toggle mt-4 text-center">
+                Don't have an account? <span id="showSignup" class="text-blue-600 cursor-pointer">Sign up</span>
+            </div>
+
+            <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-6 text-center text-[#e8a425]">Create Your Account</h2>
+            <form id="signupForm">
+                <div class="form-group mb-3">
+                    <label for="signupName" class="block mb-1">Full Name</label>
+                    <input type="text" id="signupName" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupNameError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupEmail" class="block mb-1">Email Address</label>
+                    <input type="email" id="signupEmail" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupEmailError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupPassword" class="block mb-1">Password</label>
+                    <input type="password" id="signupPassword" required class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupPasswordError"></div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="signupConfirmPassword" class="block mb-1">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required
+                        class="w-full border px-3 py-2 rounded" />
+                    <div class="error-message" id="signupConfirmPasswordError"></div>
+                </div>
+                <button type="submit" class="btn-primary flex justify-center items-center w-full" id="signupSubmitBtn">
+                    <span id="signupText">Sign Up</span>
+                    <div id="signupSpinner" class="loading-spinner"></div>
+                </button>
+            </form>
+
+            <div class="social-signup mt-4 flex flex-col space-y-3">
+                <button id="googleSignupBtn" class="btn-social btn-google">
+                    <img src="https://img.icons8.com/color/24/google-logo.png" alt="Google logo" class="inline mr-2">
+                    Sign up with Google
+                </button>
+                <button id="facebookSignupBtn" class="btn-social btn-facebook">
+                    <img src="https://img.icons8.com/color/24/facebook-new.png" alt="Facebook logo" class="inline mr-2">
+                    Sign up with Facebook
+                </button>
+            </div>
+
+            <div class="auth-toggle mt-4 text-center">
+                Already have an account? <span id="showLogin" class="text-blue-600 cursor-pointer">Login</span>
+            </div>
+
+            <button id="closeSignupModal" class="absolute top-3 right-3 text-gray-500 hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Verify Your Email</h2>
+            <p class="mb-6 text-center">We've sent a verification link to your email address. Please check your
+                inbox/spam and click the link to verify your account.</p>
+            <p class="mb-6 text-center text-sm text-gray-600">After verification, you can login to your account.</p>
+            <button id="closeVerificationModal" class="btn-primary w-full">OK</button>
+        </div>
+    </div>
+
+    <!-- Resend Verification Modal -->
+    <div id="resendVerificationModal" class="modal">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold mb-4 text-center text-[#e8a425]">Resend Verification Email</h2>
+            <p class="mb-6 text-center" id="resendVerificationMessage">Sending verification email...</p>
+            <button id="closeResendVerificationModal" class="btn-primary w-full">OK</button>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-[70vh] flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-down">
+                9 Marla House 
+            </h1>
+            <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+                Buch Villas Hamid Block, Multan
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6" data-aos="fade-up"
+                data-aos-delay="600">
+                <a href="#contact-form"
+                    class="bg-[#e8a425] hover:bg-gold-600 text-black font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                    Schedule a Viewing
+                </a>
+                <a href="#gallery"
+                    class="border-2 border-[#e8a425] text-white hover:bg-[#e8a425] hover:text-black font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                    View Gallery
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">
+                Property Gallery
+            </h2>
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="w-24 h-1 rounded-full bg-[#e8a425]"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937364/1_u6lxzv.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937372/4_vrlikr.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+                
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937375/5_ieniw3.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937377/11_od8tq8.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937375/6_wwnpb7.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937380/13_d9hn9s.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937375/3_cnfdn4.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937380/16_gzc1k0.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937382/10_orkxjp.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937380/8_wjqluc.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               <div class="gallery-item overflow-hidden rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://res.cloudinary.com/dwmbp9ck9/image/upload/v1764937379/14_q2n1mz.jpg"
+                        alt="Living Area" class="w-full h-64 object-cover">
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <!-- <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">
+                Property Video Tour
+            </h2>
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="w-24 h-1 rounded-full bg-[#e8a425]"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto" data-aos="fade-up">
+                <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                    <div class="aspect-[9/16] bg-black">
+                        <iframe src="https://www.youtube.com/embed/-sY4XjvB5IQ" title="Property Video Tour"
+                            class="w-full h-full" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <p class="text-center mt-4 text-gray-600 italic">
+                    Take a virtual tour of this stunning 1 Kanal luxury house in DHA Multan
+                </p>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Property Information Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Property Details -->
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-black">Property Details</h2>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Price</h3>
+                            <p class="text-2xl font-bold text-[#e8a425]">PKR: 3,50,00,000</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Size</h3>
+                            <p class="text-xl font-bold text-gray-800">9 Marla</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Bedrooms</h3>
+                            <p class="text-xl font-bold text-gray-800">5</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Bathrooms</h3>
+                            <p class="text-xl font-bold text-gray-800">6</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">TV Lounge</h3>
+                            <p class="text-xl font-bold text-gray-800">2</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Kitchen</h3>
+                            <p class="text-xl font-bold text-gray-800">2</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg property-card">
+                            <h3 class="text-lg font-bold text-black mb-2">Buch Villas</h3>
+                            <p class="text-xl font-bold text-gray-800">Hamid Block</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 text-black">Location</h3>
+                        <p class="text-gray-700 mb-4">Commercial #H-264, Sector H, DHA Multan</p>
+                        <div class="h-64 bg-gray-200 rounded-lg overflow-hidden">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3444.9223233756625!2d71.53758597556347!3d30.296272874797676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzDCsDE3JzQ2LjYiTiA3McKwMzInMjQuNiJF!5e0!3m2!1sen!2s!4v1762593387552!5m2!1sen!2s"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Description -->
+                <div data-aos="fade-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-black">Description</h2>
+                    <p class="text-gray-700 mb-6">
+                        09 Merla Luxury House For Sale – Buch Villas Hamid Block Multan <br>
+                        Prime location 1 Kanal brand new luxury house available for sale in DHA Multan. <br>
+                        Property is ideally located very near to Mosque & near Main Boulevard. Modern architecture,
+                        premium fittings & high-end finishes.
+
+                    </p>
+
+                    <h3 class="text-xl font-bold mb-4 text-black">Highlights & Features</h3>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            5 Spacious Bedrooms
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Stylish Drawing + Dining
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Modern Kitchen with Quality Accessories
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            TV Lounge
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Powder Room
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Servant Quarter
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Beautiful Front Elevation
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Solid Wood Work
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Tiles + Marble Flooring
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Car Parking
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#e8a425] mr-2"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Excellent Ventilation & Natural Light
+                        </li>
+                    </ul>
+
+                    <p class="text-gray-700">
+                        Located steps away from the Mosque & Main Boulevard — this masterpiece offers beauty, privacy &
+                        unmatched comfort — all in one perfect address.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">
+                Schedule a Viewing
+            </h2>
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="w-24 h-1 bg-[#e8a425] rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl p-8 shadow-lg" data-aos="fade-up">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="name" placeholder="Your Name"
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#e8a425] focus:border-[#e8a425] transition duration-300" />
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email"
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                                placeholder="your.email@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone"
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                                placeholder="+1 (555) 123-4567">
+                        </div>
+
+                        <div>
+                            <label for="preferred-date" class="block text-gray-700 mb-2">Preferred Viewing Date</label>
+                            <input type="date" id="preferred-date"
+                                class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-2">Message</label>
+                        <textarea id="message" rows="5"
+                            class="w-full px-4 py-3 border border-[#e8a425] rounded-lg focus:outline-none focus:border-[#e8a425] focus:ring-2 focus:ring-[#e8a425] transition duration-300"
+                            placeholder="Tell us about your interest in this property..."></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-black text-white py-3 rounded-lg font-bold transition duration-300 transform hover:scale-105 hover:bg-[#e8a425] hover:text-black">
+                        Schedule Viewing
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="whatsapp-wrapper">
+        <div class="whatsapp-tooltip">
+            <span>💬 For any query</span>
+        </div>
+        <a href="https://wa.me/923000172599" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 border-t border-[#e8a425]">
+        <div class="container mx-auto px-6">
+            <!-- Top section: Logo + Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+
+                <!-- Logo -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/delybxvjs/image/upload/v1762185342/Logo_galaxy_iq3sd4.png"
+                            alt="Galaxy Realtors Logo" class="w-12 h-12 object-contain">
+                        <span class="text-xl font-bold text-[#e8a425]">Galaxy Realtors Builders</span>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex space-x-6">
+                    <a href="https://www.youtube.com/@galaxyrealtorsbuilders" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-youtube" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.facebook.com/share/1BhmVAj7vN/" target="_blank" rel="noopener noreferrer"
+                        class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-facebook" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.instagram.com/galaxyrealtorsbuilders?igsh=MWRwZTY2cjRuZnN6ZQ==" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-instagram" class="h-6 w-6"></ion-icon>
+                    </a>
+                    <a href="https://www.tiktok.com/@galaxyrealtorsbuilders?_r=1&_t=ZS-915oh1iyWw4" target="_blank"
+                        rel="noopener noreferrer" class="text-white hover:text-[#e8a425] transition duration-300">
+                        <ion-icon name="logo-tiktok" class="h-6 w-6"></ion-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Center section: Required Pages Links -->
+            <div class="flex flex-col md:flex-row justify-center items-center mt-6 space-y-2 md:space-y-0 md:space-x-6">
+                 <a href="../Tools.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Tools
+                </a>
+
+                <a href="/Pages/galaxy-team.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Meet the Team
+                </a>
+                <a href="/Pages/privacy-policy.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Privacy Policy
+                </a>
+                <a href="/Pages/about-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    About Us
+                </a>
+                <a href="/Pages/contact-us.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Contact Us
+                </a>
+                <a href="/Pages/terms-and-conditions.html" class="text-[#e8a425] hover:underline text-sm md:text-base">
+                    Terms & Conditions
+                </a>
+            </div>
+
+            <!-- Bottom section: Copyright -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400 text-sm md:text-base">
+                <p>© 2025 Galaxy Realtors Builders — All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="../../Style/style.css">
+    <script src="../../Script/script.js"></script>
+    <script src="../../firebase-config.js"></script>
+    <script src="../../Script/auth.js"></script>
+    <script>const buttons = document.querySelectorAll(".filter-btn");
+        const sections = document.querySelectorAll(".property-section");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const target = btn.getAttribute("data-target");
+
+                // Reset all buttons
+                buttons.forEach(b => {
+                    b.style.backgroundColor = "rgb(229, 231, 235)"; // gray-200
+                    b.style.color = "black";
+                });
+
+                // Activate clicked button
+                btn.style.backgroundColor = "#e8a425";
+                btn.style.color = "white";
+
+                // Filter Sections
+                sections.forEach(sec => {
+                    sec.style.display = (target === "all" || sec.id === target) ? "grid" : "none";
+                });
+            });
+        });</script>
+</body>
+
+</html>
